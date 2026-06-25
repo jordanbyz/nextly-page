@@ -1,229 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexly — We Connect</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
-        
-        body {
-            font-family: 'Inter', system-ui, sans-serif;
-        }
-        
-        .display-font {
-            font-family: 'Playfair Display', serif;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Nexly — We Connect</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
 
-        .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://picsum.photos/id/1015/2000/1200');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --cream:#E8E4DC;
+  --black:#0C0C0C;
+  --grey:#141414;
+  --muted:#7A7870;
+  --border:rgba(232,228,220,0.09);
+  --blue:#178CF2;
+  --blue-mid:rgba(23,140,242,0.15);
+  --blue-dim:rgba(23,140,242,0.06);
+}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--black);
+  color:var(--cream);
+  overflow-x:hidden;
+  cursor:none;
+}
 
-        .section-bg {
-            background-size: cover;
-            background-position: center;
-        }
+/* CURSOR */
+.cursor{position:fixed;width:10px;height:10px;background:var(--cream);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(232,228,220,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,border-color 0.2s;}
 
-        .nav-link {
-            transition: all 0.4s ease;
-        }
-        
-        .nav-link:hover {
-            color: #f5e8c7;
-            letter-spacing: 2px;
-        }
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:28px 52px;
+  background:rgba(12,12,12,0.85);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--cream);text-decoration:none;letter-spacing:2px;}
+.nav-logo span{color:var(--blue);}
+.nav-links{display:flex;align-items:center;gap:36px;}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;}
+.nav-links a:hover{color:var(--cream);}
+.nav-cta{font-size:13px;color:var(--cream);border:1px solid var(--border);padding:10px 24px;background:none;cursor:none;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;transition:all 0.3s;}
+.nav-cta:hover{background:var(--blue);border-color:var(--blue);}
 
-        .text-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
-        }
-        
-        .text-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-end;padding:0 52px 80px;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.hero-bg-img{
+  position:absolute;top:0;right:0;width:45%;height:100%;
+  object-fit:cover;opacity:0.18;
+  mask-image:linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 100%);
+  -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 100%);
+}
+.hero-blue-line{
+  position:absolute;top:0;left:0;width:3px;height:100%;
+  background:linear-gradient(to bottom, transparent, var(--blue), transparent);
+  opacity:0.6;
+}
+.hero-eyebrow{
+  font-size:11px;color:var(--blue);letter-spacing:0.25em;
+  text-transform:uppercase;margin-bottom:24px;
+  display:flex;align-items:center;gap:14px;
+  position:relative;z-index:2;
+}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--blue);}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(64px,10vw,138px);
+  font-weight:900;line-height:0.91;letter-spacing:-3px;
+  margin-bottom:44px;max-width:860px;
+  position:relative;z-index:2;
+}
+.hero h1 em{font-style:italic;color:var(--blue);}
+.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;z-index:2;}
+.hero-desc{font-size:16px;color:var(--muted);line-height:1.85;max-width:400px;font-weight:300;}
+.hero-actions{display:flex;gap:14px;align-items:center;flex-shrink:0;}
+.btn-main{background:var(--blue);color:#fff;border:none;padding:14px 34px;font-size:14px;font-weight:500;letter-spacing:0.05em;cursor:none;font-family:'DM Sans',sans-serif;transition:opacity 0.3s;}
+.btn-main:hover{opacity:0.85;}
+.btn-outline{background:none;color:var(--cream);border:1px solid var(--border);padding:14px 34px;font-size:14px;letter-spacing:0.05em;cursor:none;font-family:'DM Sans',sans-serif;transition:all 0.3s;}
+.btn-outline:hover{border-color:var(--cream);}
+.hero-scroll{position:absolute;right:52px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-size:11px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;display:flex;align-items:center;gap:16px;}
+.hero-scroll::after{content:'';width:1px;height:60px;background:var(--muted);}
+
+/* BELIEF */
+.belief{padding:120px 52px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.belief-left{}
+.belief-num{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:12px;}
+.belief-num::before{content:'';width:24px;height:1px;background:var(--blue);}
+.belief h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;line-height:1.25;letter-spacing:-0.5px;margin-bottom:32px;}
+.belief h2 em{font-style:italic;color:var(--blue);}
+.belief-right{display:flex;flex-direction:column;gap:0;}
+.belief-img{width:100%;height:320px;object-fit:cover;opacity:0.75;margin-bottom:32px;filter:grayscale(20%);}
+.belief-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+.belief-col-label{font-size:11px;color:var(--blue);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.belief-col-text{font-size:14px;color:var(--muted);line-height:1.85;font-weight:300;}
+
+/* SERVICES */
+.services-section{padding:0 52px;border-bottom:1px solid var(--border);}
+.services-header{display:flex;align-items:flex-end;justify-content:space-between;padding:64px 0 60px;border-bottom:1px solid var(--border);}
+.services-header h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);font-weight:400;letter-spacing:-1px;line-height:1.1;}
+.services-header h2 em{font-style:italic;color:var(--blue);}
+.section-label-sm{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.section-label-sm::before{content:'';width:20px;height:1px;background:var(--blue);}
+.cta-link{font-size:13px;color:var(--cream);text-decoration:none;letter-spacing:0.05em;display:inline-flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding-bottom:6px;transition:gap 0.3s,border-color 0.3s;}
+.cta-link:hover{gap:20px;border-color:var(--blue);}
+
+.service-row{display:grid;grid-template-columns:72px 1fr 240px 40px;gap:40px;align-items:start;padding:52px 0;border-bottom:1px solid var(--border);transition:background 0.3s;}
+.service-row:last-child{border-bottom:none;}
+.service-row:hover{background:rgba(23,140,242,0.03);}
+.service-row-num{font-size:13px;color:var(--blue);padding-top:4px;font-weight:400;}
+.service-row-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,34px);font-weight:400;letter-spacing:-0.5px;line-height:1.15;}
+.service-row-name em{font-style:italic;color:var(--muted);}
+.service-row-tags{display:flex;flex-direction:column;gap:9px;padding-top:6px;}
+.service-tag{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+.service-tag::before{content:'—';color:var(--blue);font-size:10px;}
+.service-arrow{font-size:22px;color:var(--muted);padding-top:4px;transition:color 0.3s,transform 0.3s;}
+.service-row:hover .service-arrow{color:var(--blue);transform:translate(4px,-4px);}
+
+/* IMAGE BREAK */
+.img-break{
+  width:100%;height:480px;position:relative;overflow:hidden;
+  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.img-break img{width:100%;height:100%;object-fit:cover;opacity:0.35;filter:grayscale(30%);}
+.img-break-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg, rgba(12,12,12,0.7) 0%, rgba(23,140,242,0.08) 50%, rgba(12,12,12,0.8) 100%);
+  display:flex;align-items:center;justify-content:center;
+}
+.img-break-text{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(40px,7vw,100px);
+  font-weight:900;color:var(--cream);letter-spacing:-3px;
+  text-align:center;line-height:0.95;
+}
+.img-break-text em{font-style:italic;color:var(--blue);}
+
+/* WHO WE WORK WITH */
+.projects-section{padding:0 52px;border-bottom:1px solid var(--border);}
+.projects-header{display:flex;align-items:flex-end;justify-content:space-between;padding:64px 0 60px;border-bottom:1px solid var(--border);}
+.projects-header h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;letter-spacing:-1px;}
+.projects-header h2 em{font-style:italic;color:var(--blue);}
+
+.project-row{display:grid;grid-template-columns:60px 1fr auto auto;gap:40px;align-items:center;padding:34px 0;border-bottom:1px solid var(--border);cursor:none;transition:all 0.3s;}
+.project-row:last-child{border-bottom:none;}
+.project-num{font-size:12px;color:var(--blue);}
+.project-name{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);font-weight:400;color:var(--muted);letter-spacing:-0.5px;transition:color 0.3s;}
+.project-row:hover .project-name{color:var(--cream);}
+.project-tag{font-size:11px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
+.project-arrow{font-size:20px;color:var(--muted);transition:all 0.3s;}
+.project-row:hover .project-arrow{color:var(--blue);transform:translate(4px,-4px);}
+
+/* WHY */
+.why-section{padding:120px 52px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.why-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;line-height:1.25;letter-spacing:-0.5px;}
+.why-title em{font-style:italic;color:var(--blue);}
+.why-text{font-size:15px;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:28px;}
+.why-img{width:100%;height:400px;object-fit:cover;opacity:0.6;filter:grayscale(20%);margin-bottom:32px;}
+
+/* STATS */
+.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);}
+.stat-item{padding:48px 52px;border-right:1px solid var(--border);}
+.stat-item:last-child{border-right:none;}
+.stat-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;letter-spacing:-2px;color:var(--cream);line-height:1;}
+.stat-num span{color:var(--blue);}
+.stat-label{font-size:13px;color:var(--muted);margin-top:8px;}
+
+/* CTA */
+.cta-section{
+  padding:160px 52px;text-align:center;
+  position:relative;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.cta-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08;filter:grayscale(50%);}
+.cta-overlay{position:absolute;inset:0;background:linear-gradient(to bottom, var(--black) 0%, rgba(12,12,12,0.6) 50%, var(--black) 100%);}
+.cta-inner{position:relative;z-index:2;}
+.cta-num{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.cta-num::before,.cta-num::after{content:'';width:40px;height:1px;background:var(--blue);}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(44px,8vw,110px);font-weight:900;line-height:0.92;letter-spacing:-4px;margin-bottom:40px;}
+.cta-section h2 em{font-style:italic;color:var(--blue);}
+.cta-sub{font-size:16px;color:var(--muted);margin-bottom:52px;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;}
+.watermark{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:clamp(80px,18vw,240px);font-weight:900;color:rgba(232,228,220,0.025);letter-spacing:-6px;white-space:nowrap;pointer-events:none;user-select:none;}
+
+/* FOOTER */
+footer{padding:64px 52px 40px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;}
+.footer-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:12px;}
+.footer-logo span{color:var(--blue);}
+.footer-tagline{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px;}
+.footer-col-label{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;}
+.footer-links{display:flex;flex-direction:column;gap:13px;}
+.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color 0.3s;}
+.footer-links a:hover{color:var(--cream);}
+.footer-bottom{padding:24px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:12px;color:var(--muted);}
+.footer-bottom a{color:var(--muted);text-decoration:none;transition:color 0.3s;}
+.footer-bottom a:hover{color:var(--cream);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+
+@media(max-width:900px){
+  nav{padding:18px 24px;}
+  .nav-links{display:none;}
+  .hero,.belief,.services-section,.projects-section,.why-section,.cta-section,.stats-bar{padding-left:24px;padding-right:24px;}
+  .hero h1{letter-spacing:-1px;}
+  .belief{grid-template-columns:1fr;}
+  .service-row{grid-template-columns:40px 1fr;gap:16px;}
+  .service-row-tags,.service-arrow{display:none;}
+  .why-section{grid-template-columns:1fr;}
+  .project-row{grid-template-columns:40px 1fr auto;}
+  .project-tag{display:none;}
+  .stats-bar{grid-template-columns:1fr 1fr;}
+  .stat-item{padding:32px 24px;}
+  footer{grid-template-columns:1fr 1fr;padding:40px 24px 24px;}
+  .footer-bottom{flex-direction:column;gap:12px;padding:20px 24px;text-align:center;}
+  .hero-scroll{display:none;}
+  .projects-header,.services-header{flex-direction:column;align-items:flex-start;gap:20px;}
+}
+</style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-8 py-8 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black font-bold text-xl">N</div>
-                <span class="display-font text-3xl tracking-tight">Nexly</span>
-            </div>
-            
-            <div class="hidden md:flex items-center gap-12 text-sm uppercase tracking-widest font-light">
-                <a href="#solutions" class="nav-link">Solutions</a>
-                <a href="#philosophy" class="nav-link">Philosophy</a>
-                <a href="#about" class="nav-link">About</a>
-            </div>
-            
-            <div class="flex items-center gap-6">
-                <a href="https://nexly-production-422d.up.railway.app" 
-                   target="_blank"
-                   class="px-8 py-3.5 border border-white/30 hover:border-white text-sm font-medium rounded-full transition">
-                    ADMIN
-                </a>
-                <button onclick="contactUs()" 
-                        class="px-8 py-3.5 bg-white text-black rounded-full text-sm font-medium hover:bg-amber-100 transition">
-                    GET STARTED
-                </button>
-            </div>
-        </div>
-    </nav>
+<body>
 
-    <!-- HERO -->
-    <header class="hero-bg h-screen flex items-center relative">
-        <div class="max-w-5xl mx-auto px-8 text-center">
-            <h1 class="display-font text-7xl md:text-8xl font-light tracking-tighter leading-none mb-6">
-                WE CONNECT
-            </h1>
-            <p class="text-3xl md:text-4xl font-light max-w-2xl mx-auto text-white/90">
-                Intelligent AI chatbots that support and amplify human potential
-            </p>
-            <div class="mt-16 flex flex-col sm:flex-row gap-6 justify-center">
-                <button onclick="contactUs()" 
-                        class="px-14 py-7 bg-white text-black text-lg rounded-full hover:scale-105 transition">
-                    START FREE TRIAL
-                </button>
-                <button onclick="showDemo()" 
-                        class="px-14 py-7 border border-white/70 text-lg rounded-full hover:bg-white/10 transition">
-                    WATCH DEMO
-                </button>
-            </div>
-        </div>
-        
-        <div class="absolute bottom-12 left-1/2 text-center">
-            <div class="text-xs tracking-[4px] mb-4 opacity-70">SCROLL TO DISCOVER</div>
-            <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
-        </div>
-    </header>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <!-- PHILOSOPHY -->
-    <section id="philosophy" class="py-32 bg-zinc-950">
-        <div class="max-w-4xl mx-auto px-8">
-            <div class="text-center mb-20">
-                <span class="uppercase tracking-widest text-amber-300 text-sm">Our Belief</span>
-            </div>
-            <h2 class="display-font text-6xl leading-tight text-center max-w-4xl mx-auto">
-                AI should not replace humans.<br>
-                It should connect with them.
-            </h2>
-            <div class="mt-16 text-xl leading-relaxed text-white/80 max-w-3xl mx-auto text-center">
-                Nexly was born from the idea that technology works best when it enhances human connection — not removes it. 
-                Our AI handles the routine so your team can focus on creativity, empathy, and strategy.
-            </div>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">NEX<span>LY</span></a>
+  <div class="nav-links">
+    <a href="#belief">About</a>
+    <a href="#services">Services</a>
+    <a href="#projects">Who we help</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start your journey</button>
+</nav>
 
-    <!-- SOLUTIONS -->
-    <section id="solutions" class="section-bg py-32 relative" 
-             style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://picsum.photos/id/201/2000/1200');">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="group">
-                    <div class="h-96 bg-cover bg-center mb-8 rounded-3xl" 
-                         style="background-image: url('https://picsum.photos/id/237/800/600')"></div>
-                    <h3 class="display-font text-4xl mb-4">Customer Support</h3>
-                    <p class="text-white/70">Always-on AI that answers questions, books meetings, and intelligently hands off to humans when needed.</p>
-                </div>
-                <div class="group">
-                    <div class="h-96 bg-cover bg-center mb-8 rounded-3xl" 
-                         style="background-image: url('https://picsum.photos/id/180/800/600')"></div>
-                    <h3 class="display-font text-4xl mb-4">Sales & Booking</h3>
-                    <p class="text-white/70">AI that qualifies leads, schedules calls, and nurtures relationships with natural conversation.</p>
-                </div>
-                <div class="group">
-                    <div class="h-96 bg-cover bg-center mb-8 rounded-3xl" 
-                         style="background-image: url('https://picsum.photos/id/1016/800/600')"></div>
-                    <h3 class="display-font text-4xl mb-4">Internal Operations</h3>
-                    <p class="text-white/70">Automates HR queries, IT support, and knowledge sharing across your team.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="py-32 bg-black">
-        <div class="max-w-4xl mx-auto px-8 text-center">
-            <h2 class="display-font text-6xl mb-12">Nexly — We Connect</h2>
-            <p class="text-2xl leading-relaxed text-white/80">
-                We build AI chatbots that don’t eliminate human work — they elevate it. 
-                Every interaction becomes more intelligent, more responsive, and more human.
-            </p>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-32 bg-gradient-to-b from-black to-zinc-950 text-center">
-        <div class="max-w-3xl mx-auto px-8">
-            <h2 class="display-font text-6xl mb-8">Ready to build a smarter connection?</h2>
-            <button onclick="contactUs()" 
-                    class="mt-8 px-16 py-8 bg-white text-black text-xl rounded-full hover:bg-amber-100 transition">
-                BEGIN YOUR JOURNEY
-            </button>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-black py-20 border-t border-white/10">
-        <div class="max-w-7xl mx-auto px-8 text-center text-sm text-white/50">
-            © 2026 Nexly — We Connect. All Rights Reserved.
-        </div>
-    </footer>
-
-    <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50">
-        <div class="bg-zinc-900 rounded-3xl max-w-lg w-full mx-6 p-12">
-            <h3 class="display-font text-4xl mb-8">Let's Connect</h3>
-            <form onsubmit="submitForm(event)" class="space-y-8">
-                <input type="text" placeholder="Your name" required class="w-full bg-transparent border-b border-white/30 py-4 focus:outline-none">
-                <input type="email" placeholder="Business email" required class="w-full bg-transparent border-b border-white/30 py-4 focus:outline-none">
-                <textarea placeholder="Tell us about your needs..." rows="5" class="w-full bg-transparent border-b border-white/30 py-4 focus:outline-none"></textarea>
-                <button type="submit" class="w-full py-6 bg-white text-black rounded-full text-lg">SEND MESSAGE</button>
-            </form>
-            <button onclick="closeModal()" class="mt-6 text-white/50 w-full">Close</button>
-        </div>
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-blue-line"></div>
+  <img class="hero-bg-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=80" alt="" aria-hidden="true"/>
+  <div class="hero-eyebrow">AI-Powered Business Solutions — New Zealand</div>
+  <h1>We<br/><em>Connect</em><br/>Businesses.</h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">Nexly builds intelligent AI chatbots, websites, and digital tools that help New Zealand businesses capture more leads and grow — 24 hours a day, on autopilot.</p>
+    <div class="hero-actions">
+      <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start your journey</button>
+      <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See services</button>
     </div>
+  </div>
+  <div class="hero-scroll">Scroll</div>
+</div>
 
-    <script>
-        // Simple scroll reveal
-        function handleScroll() {
-            document.querySelectorAll('.text-reveal').forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight * 0.8) {
-                    el.classList.add('visible');
-                }
-            });
-        }
-        
-        window.addEventListener('scroll', handleScroll);
-        
-        function showDemo() {
-            alert("🎥 Demo would open here.\nTry asking your AI assistant questions like 'Book a meeting' or 'Answer customer query'.");
-        }
-        
-        function contactUs() {
-            document.getElementById('modal').classList.remove('hidden');
-        }
-        
-        function closeModal() {
-            document.getElementById('modal').classList.add('hidden');
-        }
-        
-        function submitForm(e) {
-            e.preventDefault();
-            alert("✅ Thank you. We'll be in touch shortly.");
-            closeModal();
-        }
-    </script>
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item reveal"><div class="stat-num">24<span>/7</span></div><div class="stat-label">Always-on AI support</div></div>
+  <div class="stat-item reveal"><div class="stat-num">10<span>min</span></div><div class="stat-label">Average client setup time</div></div>
+  <div class="stat-item reveal"><div class="stat-num">NZ<span>$0</span></div><div class="stat-label">Upfront cost to get started</div></div>
+  <div class="stat-item reveal"><div class="stat-num">100<span>%</span></div><div class="stat-label">New Zealand owned</div></div>
+</div>
+
+<!-- BELIEF -->
+<div class="belief" id="belief">
+  <div class="belief-left reveal-left">
+    <div class="belief-num">(01) — Our Belief</div>
+    <h2>When we believe in your business, we put <em>everything on the line</em> to make sure your customers never miss you — day or night.</h2>
+    <div class="belief-cols" style="margin-top:40px;">
+      <div>
+        <div class="belief-col-label">↓ The Problem</div>
+        <div class="belief-col-text">Most businesses lose leads every single day — after-hours enquiries that go unanswered, appointments that never get booked. The world moves fast.</div>
+      </div>
+      <div>
+        <div class="belief-col-label">↓ The Solution</div>
+        <div class="belief-col-text">Nexly puts an intelligent AI assistant on your business — answering questions, capturing leads, and booking appointments while you sleep.</div>
+      </div>
+    </div>
+  </div>
+  <div class="belief-right reveal">
+    <img class="belief-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80" alt="Business owner working with digital tools"/>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<div class="services-section" id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label-sm">(03) — What we build with you</div>
+      <h2>Everything your business<br/><em>needs to grow</em></h2>
+    </div>
+    <a href="#contact" class="cta-link">Start your journey →</a>
+  </div>
+  <div class="service-row reveal">
+    <div class="service-row-num">01</div>
+    <div class="service-row-name">AI Chatbots &amp;<br/><em>Lead Capture</em></div>
+    <div class="service-row-tags">
+      <div class="service-tag">24/7 customer support</div>
+      <div class="service-tag">Lead &amp; callback capture</div>
+      <div class="service-tag">FAQ automation</div>
+      <div class="service-tag">Multilingual support</div>
+    </div>
+    <div class="service-arrow">↗</div>
+  </div>
+  <div class="service-row reveal">
+    <div class="service-row-num">02</div>
+    <div class="service-row-name">Website Design<br/><em>&amp; Development</em></div>
+    <div class="service-row-tags">
+      <div class="service-tag">Mobile-first design</div>
+      <div class="service-tag">SEO optimised</div>
+      <div class="service-tag">Conversion focused</div>
+      <div class="service-tag">CMS included</div>
+    </div>
+    <div class="service-arrow">↗</div>
+  </div>
+  <div class="service-row reveal">
+    <div class="service-row-num">03</div>
+    <div class="service-row-name">Booking &amp;<br/><em>Calendar Integration</em></div>
+    <div class="service-row-tags">
+      <div class="service-tag">Google Calendar sync</div>
+      <div class="service-tag">Auto-confirmation</div>
+      <div class="service-tag">Appointment reminders</div>
+      <div class="service-tag">Zero admin</div>
+    </div>
+    <div class="service-arrow">↗</div>
+  </div>
+  <div class="service-row reveal">
+    <div class="service-row-num">04</div>
+    <div class="service-row-name">Growth &amp;<br/><em>Automation Retainers</em></div>
+    <div class="service-row-tags">
+      <div class="service-tag">Monthly performance reports</div>
+      <div class="service-tag">Review protection</div>
+      <div class="service-tag">WhatsApp bots</div>
+      <div class="service-tag">AI content writing</div>
+    </div>
+    <div class="service-arrow">↗</div>
+  </div>
+</div>
+
+<!-- IMAGE BREAK -->
+<div class="img-break">
+  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1800&q=80" alt="Team working on digital solutions"/>
+  <div class="img-break-overlay">
+    <div class="img-break-text">We <em>Connect</em><br/>People &amp; Business.</div>
+  </div>
+</div>
+
+<!-- WHO WE WORK WITH -->
+<div class="projects-section" id="projects">
+  <div class="projects-header reveal">
+    <div>
+      <div class="section-label-sm">(02) — Who we work with</div>
+      <h2>Built for New Zealand<br/><em>businesses</em></h2>
+    </div>
+    <a href="#contact" class="cta-link">Get in touch →</a>
+  </div>
+  <div class="project-row reveal"><div class="project-num">01</div><div class="project-name">Hair Salons &amp; Beauty</div><div class="project-tag">Chatbot + Booking</div><div class="project-arrow">↗</div></div>
+  <div class="project-row reveal"><div class="project-num">02</div><div class="project-name">Dental &amp; Medical Clinics</div><div class="project-tag">Lead Capture + FAQ</div><div class="project-arrow">↗</div></div>
+  <div class="project-row reveal"><div class="project-num">03</div><div class="project-name">Trades &amp; Local Services</div><div class="project-tag">Quotes + Callbacks</div><div class="project-arrow">↗</div></div>
+  <div class="project-row reveal"><div class="project-num">04</div><div class="project-name">Gyms &amp; Personal Trainers</div><div class="project-tag">Membership + Booking</div><div class="project-arrow">↗</div></div>
+  <div class="project-row reveal"><div class="project-num">05</div><div class="project-name">Restaurants &amp; Hospitality</div><div class="project-tag">Reservations + Menu</div><div class="project-arrow">↗</div></div>
+  <div class="project-row reveal"><div class="project-num">06</div><div class="project-name">Estate Agents &amp; Property</div><div class="project-tag">Leads + Viewings</div><div class="project-arrow">↗</div></div>
+</div>
+
+<!-- WHY -->
+<div class="why-section reveal">
+  <div>
+    <div class="section-label-sm">(04) — Why it matters</div>
+    <div class="why-title" style="margin-top:20px;">In a world full of noise, the businesses that <em>respond fastest</em> win the customer.</div>
+  </div>
+  <div>
+    <img class="why-img" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=80" alt="Business growth and connection"/>
+    <p class="why-text">People don't wait anymore. If your business doesn't answer at 9pm on a Sunday, your competitor's will. The businesses growing fastest right now aren't bigger — they're just more available.</p>
+    <p class="why-text">Nexly closes that gap. An AI assistant that sounds like your business, knows your services, and never takes a day off. Your customers get answers instantly. You get the lead — every time.</p>
+    <a href="#contact" class="cta-link">Start your journey →</a>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+  <img class="cta-bg-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" alt=""/>
+  <div class="cta-overlay"></div>
+  <div class="cta-inner">
+    <div class="watermark">NEXLY</div>
+    <div class="cta-num">We're always excited to hear from businesses ready to grow.</div>
+    <h2>Don't be<br/><em>invisible</em><br/>overnight.</h2>
+    <p class="cta-sub">Get a free demo chatbot for your business — no commitment, no tech knowledge needed on your end.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn-main" onclick="alert('Email us at hello@nexly.co.nz')" style="font-size:15px;padding:16px 44px;">Book a free demo</button>
+      <button class="btn-outline" onclick="alert('Call us: 0800 NEXLY')" style="font-size:15px;padding:16px 44px;">Call us</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo">NEX<span>LY</span></div>
+    <div class="footer-tagline">AI-powered digital solutions for New Zealand businesses. We Connect.</div>
+  </div>
+  <div>
+    <div class="footer-col-label">Navigate</div>
+    <div class="footer-links">
+      <a href="#belief">About</a>
+      <a href="#services">Services</a>
+      <a href="#projects">Who we help</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-label">Services</div>
+    <div class="footer-links">
+      <a href="#services">AI Chatbots</a>
+      <a href="#services">Website Design</a>
+      <a href="#services">Booking Integration</a>
+      <a href="#services">Growth Retainers</a>
+    </div>
+  </div>
+  <div>
+    <div class="footer-col-label">Connect</div>
+    <div class="footer-links">
+      <a href="#">Instagram</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Facebook</a>
+      <a href="mailto:hello@nexly.co.nz">hello@nexly.co.nz</a>
+    </div>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <div>©2026 Nexly — We Connect</div>
+  <div id="clock" style="font-family:monospace;letter-spacing:0.05em;"></div>
+  <div style="display:flex;gap:20px;">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Cookies</a>
+  </div>
+</div>
+
+<script>
+// Cursor
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursorRing');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
+(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.project-row,.service-row').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='rgba(23,140,242,0.6)';});
+  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(232,228,220,0.35)';});
+});
+
+// Clock
+function updateClock(){const el=document.getElementById('clock');if(!el)return;const t=new Date().toLocaleTimeString('en-NZ',{timeZone:'Pacific/Auckland',hour:'2-digit',minute:'2-digit',second:'2-digit'});el.textContent='NZ '+t+' (NZST)';}
+updateClock();setInterval(updateClock,1000);
+
+// Reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
