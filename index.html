@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nexly — We Connect</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500&display=swap');
         
         body {
             font-family: 'Inter', system-ui, sans-serif;
@@ -19,54 +19,61 @@
         }
 
         .hero-bg {
-            background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://picsum.photos/id/1015/2000/1200');
+            background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://picsum.photos/id/1015/2000/1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .section-bg {
             background-size: cover;
             background-position: center;
         }
 
         .nav-link {
-            transition: color 0.3s ease;
+            transition: all 0.4s ease;
         }
         
         .nav-link:hover {
-            color: #d4af37;
+            color: #f5e8c7;
+            letter-spacing: 2px;
         }
 
-        .product-card {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s;
+        .text-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1.2s cubic-bezier(0.25, 0.1, 0.25, 1);
         }
         
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px -15px rgb(0 0 0 / 0.2);
+        .text-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body class="bg-white text-zinc-900 overflow-x-hidden">
+<body class="bg-black text-white overflow-x-hidden">
     <!-- NAVBAR -->
-    <nav class="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md z-50 border-b">
-        <div class="max-w-7xl mx-auto px-8 py-6 flex justify-between items-center">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-8 py-8 flex justify-between items-center">
             <div class="flex items-center gap-4">
-                <div class="w-9 h-9 bg-gradient-to-br from-amber-400 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold text-xl">N</div>
-                <div class="display-font text-3xl tracking-tight font-medium">Nexly</div>
+                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center text-black font-bold text-xl">N</div>
+                <span class="display-font text-3xl tracking-tight">Nexly</span>
             </div>
             
-            <div class="hidden md:flex items-center gap-10 text-sm uppercase tracking-widest font-medium">
-                <a href="#products" class="nav-link">Solutions</a>
-                <a href="#benefits" class="nav-link">Benefits</a>
+            <div class="hidden md:flex items-center gap-12 text-sm uppercase tracking-widest font-light">
+                <a href="#solutions" class="nav-link">Solutions</a>
+                <a href="#philosophy" class="nav-link">Philosophy</a>
                 <a href="#about" class="nav-link">About</a>
             </div>
             
-            <div class="flex items-center gap-4">
-                <!-- ADMIN Button -->
+            <div class="flex items-center gap-6">
                 <a href="https://nexly-production-422d.up.railway.app" 
                    target="_blank"
-                   class="px-7 py-3.5 border border-zinc-300 hover:border-zinc-400 text-sm font-medium rounded-full transition hover:bg-zinc-50">
+                   class="px-8 py-3.5 border border-white/30 hover:border-white text-sm font-medium rounded-full transition">
                     ADMIN
                 </a>
-                
                 <button onclick="contactUs()" 
-                        class="px-8 py-3.5 bg-black text-white rounded-full text-sm font-medium hover:bg-zinc-800 transition">
+                        class="px-8 py-3.5 bg-white text-black rounded-full text-sm font-medium hover:bg-amber-100 transition">
                     GET STARTED
                 </button>
             </div>
@@ -74,182 +81,134 @@
     </nav>
 
     <!-- HERO -->
-    <header class="hero-bg h-screen flex items-center text-white pt-20">
+    <header class="hero-bg h-screen flex items-center relative">
         <div class="max-w-5xl mx-auto px-8 text-center">
-            <div class="max-w-2xl mx-auto">
-                <h1 class="display-font text-7xl md:text-[5.5rem] leading-none font-light tracking-tighter mb-8">
-                    WE CONNECT
-                </h1>
-                <p class="text-2xl md:text-3xl font-light mb-12 text-white/90">
-                    Intelligent AI that supports your team
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center">
-                    <button onclick="contactUs()" 
-                            class="px-12 py-6 bg-white text-black font-medium text-lg rounded-full hover:bg-amber-100 transition">
-                        START FREE TRIAL
-                    </button>
-                    <button onclick="showDemo()" 
-                            class="px-12 py-6 border border-white/80 text-white font-medium text-lg rounded-full hover:bg-white/10 transition">
-                        WATCH 1-MIN DEMO
-                    </button>
-                </div>
+            <h1 class="display-font text-7xl md:text-8xl font-light tracking-tighter leading-none mb-6">
+                WE CONNECT
+            </h1>
+            <p class="text-3xl md:text-4xl font-light max-w-2xl mx-auto text-white/90">
+                Intelligent AI chatbots that support and amplify human potential
+            </p>
+            <div class="mt-16 flex flex-col sm:flex-row gap-6 justify-center">
+                <button onclick="contactUs()" 
+                        class="px-14 py-7 bg-white text-black text-lg rounded-full hover:scale-105 transition">
+                    START FREE TRIAL
+                </button>
+                <button onclick="showDemo()" 
+                        class="px-14 py-7 border border-white/70 text-lg rounded-full hover:bg-white/10 transition">
+                    WATCH DEMO
+                </button>
             </div>
         </div>
         
-        <!-- Scroll indicator -->
-        <div class="absolute bottom-12 left-1/2 flex flex-col items-center text-white/70 text-xs tracking-widest">
-            <div>SCROLL TO EXPLORE</div>
-            <i class="fas fa-chevron-down mt-3 animate-bounce"></i>
+        <div class="absolute bottom-12 left-1/2 text-center">
+            <div class="text-xs tracking-[4px] mb-4 opacity-70">SCROLL TO DISCOVER</div>
+            <i class="fas fa-chevron-down text-2xl animate-bounce"></i>
         </div>
     </header>
 
-    <!-- PRODUCTS -->
-    <section id="products" class="py-28 bg-white">
-        <div class="max-w-7xl mx-auto px-8">
+    <!-- PHILOSOPHY -->
+    <section id="philosophy" class="py-32 bg-zinc-950">
+        <div class="max-w-4xl mx-auto px-8">
             <div class="text-center mb-20">
-                <span class="uppercase tracking-[3px] text-amber-600 text-sm font-medium">AI Solutions</span>
-                <h2 class="display-font text-6xl mt-3">Built for real impact</h2>
+                <span class="uppercase tracking-widest text-amber-300 text-sm">Our Belief</span>
             </div>
-            
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="product-card group bg-white border border-zinc-100 rounded-3xl overflow-hidden">
-                    <div class="h-80 bg-[url('https://picsum.photos/id/201/800/600')] bg-cover"></div>
-                    <div class="p-10">
-                        <h3 class="display-font text-3xl mb-4">Customer Support</h3>
-                        <p class="text-zinc-600 leading-relaxed">24/7 AI that answers questions, books meetings, and escalates seamlessly to your team.</p>
-                        <div class="mt-8 text-amber-600 group-hover:underline cursor-pointer">Learn more →</div>
-                    </div>
-                </div>
-                
-                <div class="product-card group bg-white border border-zinc-100 rounded-3xl overflow-hidden">
-                    <div class="h-80 bg-[url('https://picsum.photos/id/237/800/600')] bg-cover"></div>
-                    <div class="p-10">
-                        <h3 class="display-font text-3xl mb-4">Sales Assistant</h3>
-                        <p class="text-zinc-600 leading-relaxed">Qualifies leads, schedules calls, and nurtures relationships automatically.</p>
-                        <div class="mt-8 text-amber-600 group-hover:underline cursor-pointer">Learn more →</div>
-                    </div>
-                </div>
-                
-                <div class="product-card group bg-white border border-zinc-100 rounded-3xl overflow-hidden">
-                    <div class="h-80 bg-[url('https://picsum.photos/id/180/800/600')] bg-cover"></div>
-                    <div class="p-10">
-                        <h3 class="display-font text-3xl mb-4">Internal Helper</h3>
-                        <p class="text-zinc-600 leading-relaxed">Automates HR, IT support, and knowledge sharing across your organization.</p>
-                        <div class="mt-8 text-amber-600 group-hover:underline cursor-pointer">Learn more →</div>
-                    </div>
-                </div>
+            <h2 class="display-font text-6xl leading-tight text-center max-w-4xl mx-auto">
+                AI should not replace humans.<br>
+                It should connect with them.
+            </h2>
+            <div class="mt-16 text-xl leading-relaxed text-white/80 max-w-3xl mx-auto text-center">
+                Nexly was born from the idea that technology works best when it enhances human connection — not removes it. 
+                Our AI handles the routine so your team can focus on creativity, empathy, and strategy.
             </div>
         </div>
     </section>
 
-    <!-- BENEFITS -->
-    <section id="benefits" class="py-28 bg-zinc-50">
+    <!-- SOLUTIONS -->
+    <section id="solutions" class="section-bg py-32 relative" 
+             style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://picsum.photos/id/201/2000/1200');">
         <div class="max-w-7xl mx-auto px-8">
-            <div class="grid md:grid-cols-12 gap-16 items-center">
-                <div class="md:col-span-5">
-                    <h2 class="display-font text-6xl leading-none">AI that <span class="text-amber-600">enhances</span> human potential</h2>
-                    <p class="mt-8 text-lg text-zinc-600 max-w-md">
-                        Nexly AI chatbots handle the repetitive work so your people can focus on creativity, strategy, and relationships.
-                    </p>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="group">
+                    <div class="h-96 bg-cover bg-center mb-8 rounded-3xl" 
+                         style="background-image: url('https://picsum.photos/id/237/800/600')"></div>
+                    <h3 class="display-font text-4xl mb-4">Customer Support</h3>
+                    <p class="text-white/70">Always-on AI that answers questions, books meetings, and intelligently hands off to humans when needed.</p>
                 </div>
-                <div class="md:col-span-7 space-y-16">
-                    <div class="flex gap-8">
-                        <div class="text-5xl">⚡</div>
-                        <div>
-                            <h4 class="text-2xl font-medium">Lightning Fast</h4>
-                            <p class="mt-3 text-zinc-600">Instant answers to common questions. Reduce wait times dramatically.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-8">
-                        <div class="text-5xl">🔄</div>
-                        <div>
-                            <h4 class="text-2xl font-medium">Smart Handoffs</h4>
-                            <p class="mt-3 text-zinc-600">Knows exactly when to bring a human expert into the conversation.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-8">
-                        <div class="text-5xl">📈</div>
-                        <div>
-                            <h4 class="text-2xl font-medium">Continuous Improvement</h4>
-                            <p class="mt-3 text-zinc-600">Learns from every interaction to become more helpful over time.</p>
-                        </div>
-                    </div>
+                <div class="group">
+                    <div class="h-96 bg-cover bg-center mb-8 rounded-3xl" 
+                         style="background-image: url('https://picsum.photos/id/180/800/600')"></div>
+                    <h3 class="display-font text-4xl mb-4">Sales & Booking</h3>
+                    <p class="text-white/70">AI that qualifies leads, schedules calls, and nurtures relationships with natural conversation.</p>
+                </div>
+                <div class="group">
+                    <div class="h-96 bg-cover bg-center mb-8 rounded-3xl" 
+                         style="background-image: url('https://picsum.photos/id/1016/800/600')"></div>
+                    <h3 class="display-font text-4xl mb-4">Internal Operations</h3>
+                    <p class="text-white/70">Automates HR queries, IT support, and knowledge sharing across your team.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="py-28">
+    <section id="about" class="py-32 bg-black">
         <div class="max-w-4xl mx-auto px-8 text-center">
-            <h2 class="display-font text-6xl mb-10">Nexly — We Connect</h2>
-            <p class="text-2xl text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-                We create AI chatbots that support and amplify human capabilities — not replace them. 
-                From customer service to internal operations, Nexly makes every interaction more intelligent.
+            <h2 class="display-font text-6xl mb-12">Nexly — We Connect</h2>
+            <p class="text-2xl leading-relaxed text-white/80">
+                We build AI chatbots that don’t eliminate human work — they elevate it. 
+                Every interaction becomes more intelligent, more responsive, and more human.
             </p>
         </div>
     </section>
 
     <!-- CTA -->
-    <section class="bg-black text-white py-28">
-        <div class="max-w-4xl mx-auto px-8 text-center">
-            <h2 class="display-font text-6xl mb-8">Ready to connect with AI?</h2>
+    <section class="py-32 bg-gradient-to-b from-black to-zinc-950 text-center">
+        <div class="max-w-3xl mx-auto px-8">
+            <h2 class="display-font text-6xl mb-8">Ready to build a smarter connection?</h2>
             <button onclick="contactUs()" 
-                    class="mt-6 px-16 py-7 bg-white text-black text-xl rounded-full hover:bg-amber-300 transition font-medium">
-                START BUILDING TODAY
+                    class="mt-8 px-16 py-8 bg-white text-black text-xl rounded-full hover:bg-amber-100 transition">
+                BEGIN YOUR JOURNEY
             </button>
         </div>
     </section>
 
     <!-- FOOTER -->
-    <footer class="bg-zinc-900 text-zinc-400 py-20">
-        <div class="max-w-7xl mx-auto px-8 grid grid-cols-2 md:grid-cols-4 gap-y-12">
-            <div>
-                <div class="flex items-center gap-3 text-white mb-6">
-                    <div class="w-8 h-8 bg-amber-400 rounded-full flex items-center justify-center">N</div>
-                    <span class="display-font text-3xl">Nexly</span>
-                </div>
-                <p class="text-sm">We Connect</p>
-            </div>
-            <div class="text-sm space-y-2">
-                <div class="text-white font-medium mb-4">PLATFORM</div>
-                <div>Solutions</div>
-                <div>Pricing</div>
-                <div>Integrations</div>
-            </div>
-            <div class="text-sm space-y-2">
-                <div class="text-white font-medium mb-4">COMPANY</div>
-                <div>About Us</div>
-                <div>Blog</div>
-                <div>Careers</div>
-            </div>
-            <div>
-                <div class="text-white font-medium mb-4">CONTACT</div>
-                <a href="#" class="block hover:text-white">hello@nexly.ai</a>
-            </div>
-        </div>
-        <div class="text-center text-xs mt-20 text-zinc-500">
-            © 2026 Nexly. All Rights Reserved.
+    <footer class="bg-black py-20 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-8 text-center text-sm text-white/50">
+            © 2026 Nexly — We Connect. All Rights Reserved.
         </div>
     </footer>
 
     <!-- Modal -->
-    <div id="modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100]">
-        <div class="bg-white rounded-3xl max-w-lg w-full mx-4 p-10">
-            <h3 class="text-3xl display-font mb-8">Let's start the conversation</h3>
-            <form onsubmit="submitForm(event)" class="space-y-6">
-                <input type="text" placeholder="Your name" required class="w-full px-6 py-5 border rounded-2xl focus:outline-none focus:border-amber-400">
-                <input type="email" placeholder="Business email" required class="w-full px-6 py-5 border rounded-2xl focus:outline-none focus:border-amber-400">
-                <textarea placeholder="What would you like your AI to help with?" rows="4" class="w-full px-6 py-5 border rounded-3xl focus:outline-none focus:border-amber-400"></textarea>
-                <button type="submit" class="w-full py-6 bg-black text-white rounded-2xl text-lg font-medium">SEND MESSAGE</button>
+    <div id="modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50">
+        <div class="bg-zinc-900 rounded-3xl max-w-lg w-full mx-6 p-12">
+            <h3 class="display-font text-4xl mb-8">Let's Connect</h3>
+            <form onsubmit="submitForm(event)" class="space-y-8">
+                <input type="text" placeholder="Your name" required class="w-full bg-transparent border-b border-white/30 py-4 focus:outline-none">
+                <input type="email" placeholder="Business email" required class="w-full bg-transparent border-b border-white/30 py-4 focus:outline-none">
+                <textarea placeholder="Tell us about your needs..." rows="5" class="w-full bg-transparent border-b border-white/30 py-4 focus:outline-none"></textarea>
+                <button type="submit" class="w-full py-6 bg-white text-black rounded-full text-lg">SEND MESSAGE</button>
             </form>
-            <button onclick="closeModal()" class="mt-6 text-zinc-500 w-full">Cancel</button>
+            <button onclick="closeModal()" class="mt-6 text-white/50 w-full">Close</button>
         </div>
     </div>
 
     <script>
+        // Simple scroll reveal
+        function handleScroll() {
+            document.querySelectorAll('.text-reveal').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.8) {
+                    el.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        
         function showDemo() {
-            alert("🎥 In a real site this would open a live AI demo.\n\nExample: 'Help me schedule a team meeting for next week.'");
+            alert("🎥 Demo would open here.\nTry asking your AI assistant questions like 'Book a meeting' or 'Answer customer query'.");
         }
         
         function contactUs() {
@@ -262,11 +221,9 @@
         
         function submitForm(e) {
             e.preventDefault();
-            alert("✅ Thank you! We'll be in touch shortly.");
+            alert("✅ Thank you. We'll be in touch shortly.");
             closeModal();
         }
-
-        console.log('%cNexly — We Connect ready', 'color:#d4af37; font-family: Playfair Display; font-size:16px');
     </script>
 </body>
 </html>
