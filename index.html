@@ -1,529 +1,928 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Nexly — We Connect</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap');
+<!-- saved from url=(0045)file:///C:/Users/jorda/Downloads/nexly_7.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexly — We Connect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./nexly_final_files/css2" rel="stylesheet">
+<style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --cream:#E8E4DC;
-  --black:#0C0C0C;
-  --grey:#141414;
-  --muted:#7A7870;
-  --border:rgba(232,228,220,0.09);
+  --black:#0a0a0a;
+  --surface:#111111;
+  --surface2:#161616;
+  --border:rgba(255,255,255,0.08);
+  --border2:rgba(255,255,255,0.12);
+  --white:#ffffff;
+  --off-white:#e8e6e1;
+  --muted:#888580;
+  --muted2:#5a5855;
   --blue:#178CF2;
-  --blue-mid:rgba(23,140,242,0.15);
-  --blue-dim:rgba(23,140,242,0.06);
+  --blue-dim:rgba(23,140,242,0.12);
+  --blue-dimmer:rgba(23,140,242,0.06);
 }
 html{scroll-behavior:smooth;}
 body{
-  font-family:'DM Sans',sans-serif;
+  font-family:'Inter',sans-serif;
   background:var(--black);
-  color:var(--cream);
+  color:var(--off-white);
   overflow-x:hidden;
-  cursor:none;
+  -webkit-font-smoothing:antialiased;
 }
 
-/* CURSOR */
-.cursor{position:fixed;width:10px;height:10px;background:var(--cream);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
-.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(232,228,220,0.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,border-color 0.2s;}
-
-/* NAV */
+/* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;align-items:center;justify-content:space-between;
-  padding:28px 52px;
-  background:rgba(12,12,12,0.85);
-  backdrop-filter:blur(20px);
+  padding:0 48px;height:64px;
+  background:rgba(10,10,10,0.8);
+  backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
 }
-.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--cream);text-decoration:none;letter-spacing:2px;}
-.nav-logo span{color:var(--blue);}
-.nav-links{display:flex;align-items:center;gap:36px;}
-.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.05em;transition:color 0.3s;}
-.nav-links a:hover{color:var(--cream);}
-.nav-cta{font-size:13px;color:var(--cream);border:1px solid var(--border);padding:10px 24px;background:none;cursor:none;font-family:'DM Sans',sans-serif;letter-spacing:0.05em;transition:all 0.3s;}
-.nav-cta:hover{background:var(--blue);border-color:var(--blue);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.nav-logo svg{display:block;}
+.nav-links{display:flex;align-items:center;gap:32px;}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.01em;transition:color 0.2s;}
+.nav-links a:hover{color:var(--white);}
+.nav-right{display:flex;align-items:center;gap:16px;}
+.nav-demo{
+  font-size:13px;font-weight:500;
+  background:var(--white);color:var(--black);
+  border:none;padding:8px 20px;border-radius:100px;
+  cursor:pointer;font-family:'Inter',sans-serif;
+  transition:opacity 0.2s;letter-spacing:0.01em;
+}
+.nav-demo:hover{opacity:0.88;}
 
-/* HERO */
+/* ── HERO ── */
 .hero{
-  min-height:100vh;display:flex;flex-direction:column;
-  justify-content:flex-end;padding:0 52px 80px;
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  text-align:center;
+  padding:120px 48px 80px;
   position:relative;overflow:hidden;
-  border-bottom:1px solid var(--border);
 }
-.hero-bg-img{
-  position:absolute;top:0;right:0;width:45%;height:100%;
-  object-fit:cover;opacity:0.18;
-  mask-image:linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 100%);
-  -webkit-mask-image:linear-gradient(to left, rgba(0,0,0,0.9) 0%, transparent 100%);
-}
-.hero-blue-line{
-  position:absolute;top:0;left:0;width:3px;height:100%;
-  background:linear-gradient(to bottom, transparent, var(--blue), transparent);
-  opacity:0.6;
-}
-.hero-eyebrow{
-  font-size:11px;color:var(--blue);letter-spacing:0.25em;
-  text-transform:uppercase;margin-bottom:24px;
-  display:flex;align-items:center;gap:14px;
-  position:relative;z-index:2;
-}
-.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--blue);}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(64px,10vw,138px);
-  font-weight:900;line-height:0.91;letter-spacing:-3px;
-  margin-bottom:44px;max-width:860px;
-  position:relative;z-index:2;
-}
-.hero h1 em{font-style:italic;color:var(--blue);}
-.hero-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;z-index:2;}
-.hero-desc{font-size:16px;color:var(--muted);line-height:1.85;max-width:400px;font-weight:300;}
-.hero-actions{display:flex;gap:14px;align-items:center;flex-shrink:0;}
-.btn-main{background:var(--blue);color:#fff;border:none;padding:14px 34px;font-size:14px;font-weight:500;letter-spacing:0.05em;cursor:none;font-family:'DM Sans',sans-serif;transition:opacity 0.3s;}
-.btn-main:hover{opacity:0.85;}
-.btn-outline{background:none;color:var(--cream);border:1px solid var(--border);padding:14px 34px;font-size:14px;letter-spacing:0.05em;cursor:none;font-family:'DM Sans',sans-serif;transition:all 0.3s;}
-.btn-outline:hover{border-color:var(--cream);}
-.hero-scroll{position:absolute;right:52px;top:50%;transform:translateY(-50%);writing-mode:vertical-rl;font-size:11px;color:var(--muted);letter-spacing:0.2em;text-transform:uppercase;display:flex;align-items:center;gap:16px;}
-.hero-scroll::after{content:'';width:1px;height:60px;background:var(--muted);}
-
-/* BELIEF */
-.belief{padding:120px 52px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-.belief-left{}
-.belief-num{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:28px;display:flex;align-items:center;gap:12px;}
-.belief-num::before{content:'';width:24px;height:1px;background:var(--blue);}
-.belief h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;line-height:1.25;letter-spacing:-0.5px;margin-bottom:32px;}
-.belief h2 em{font-style:italic;color:var(--blue);}
-.belief-right{display:flex;flex-direction:column;gap:0;}
-.belief-img{width:100%;height:320px;object-fit:cover;opacity:0.75;margin-bottom:32px;filter:grayscale(20%);}
-.belief-cols{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
-.belief-col-label{font-size:11px;color:var(--blue);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.belief-col-text{font-size:14px;color:var(--muted);line-height:1.85;font-weight:300;}
-
-/* SERVICES */
-.services-section{padding:0 52px;border-bottom:1px solid var(--border);}
-.services-header{display:flex;align-items:flex-end;justify-content:space-between;padding:64px 0 60px;border-bottom:1px solid var(--border);}
-.services-header h2{font-family:'Playfair Display',serif;font-size:clamp(30px,4vw,48px);font-weight:400;letter-spacing:-1px;line-height:1.1;}
-.services-header h2 em{font-style:italic;color:var(--blue);}
-.section-label-sm{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px;}
-.section-label-sm::before{content:'';width:20px;height:1px;background:var(--blue);}
-.cta-link{font-size:13px;color:var(--cream);text-decoration:none;letter-spacing:0.05em;display:inline-flex;align-items:center;gap:12px;border-bottom:1px solid var(--border);padding-bottom:6px;transition:gap 0.3s,border-color 0.3s;}
-.cta-link:hover{gap:20px;border-color:var(--blue);}
-
-.service-row{display:grid;grid-template-columns:72px 1fr 240px 40px;gap:40px;align-items:start;padding:52px 0;border-bottom:1px solid var(--border);transition:background 0.3s;}
-.service-row:last-child{border-bottom:none;}
-.service-row:hover{background:rgba(23,140,242,0.03);}
-.service-row-num{font-size:13px;color:var(--blue);padding-top:4px;font-weight:400;}
-.service-row-name{font-family:'Playfair Display',serif;font-size:clamp(22px,2.8vw,34px);font-weight:400;letter-spacing:-0.5px;line-height:1.15;}
-.service-row-name em{font-style:italic;color:var(--muted);}
-.service-row-tags{display:flex;flex-direction:column;gap:9px;padding-top:6px;}
-.service-tag{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:8px;}
-.service-tag::before{content:'—';color:var(--blue);font-size:10px;}
-.service-arrow{font-size:22px;color:var(--muted);padding-top:4px;transition:color 0.3s,transform 0.3s;}
-.service-row:hover .service-arrow{color:var(--blue);transform:translate(4px,-4px);}
-
-/* IMAGE BREAK */
-.img-break{
-  width:100%;height:480px;position:relative;overflow:hidden;
-  border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.img-break img{width:100%;height:100%;object-fit:cover;opacity:0.35;filter:grayscale(30%);}
-.img-break-overlay{
+.hero-grain{
   position:absolute;inset:0;
-  background:linear-gradient(135deg, rgba(12,12,12,0.7) 0%, rgba(23,140,242,0.08) 50%, rgba(12,12,12,0.8) 100%);
-  display:flex;align-items:center;justify-content:center;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;opacity:0.4;
 }
-.img-break-text{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(40px,7vw,100px);
-  font-weight:900;color:var(--cream);letter-spacing:-3px;
-  text-align:center;line-height:0.95;
+.hero-glow{
+  position:absolute;top:20%;left:50%;transform:translateX(-50%);
+  width:700px;height:400px;
+  background:radial-gradient(ellipse at center, rgba(23,140,242,0.1) 0%, transparent 70%);
+  pointer-events:none;
 }
-.img-break-text em{font-style:italic;color:var(--blue);}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--border2);
+  border-radius:100px;padding:6px 14px 6px 10px;
+  font-size:12px;color:var(--muted);
+  margin-bottom:36px;
+  animation:fadeUp 0.7s ease both;
+}
+.hero-pill-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;}
+.hero-headline{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(52px,8vw,104px);
+  font-weight:400;line-height:1.0;
+  letter-spacing:-0.03em;
+  color:var(--white);
+  margin-bottom:28px;
+  max-width:920px;
+  animation:fadeUp 0.8s ease 0.1s both;
+}
+.hero-headline em{font-style:italic;color:var(--blue);}
+.hero-sub{
+  font-size:clamp(15px,1.5vw,18px);
+  color:var(--muted);line-height:1.75;
+  max-width:540px;font-weight:300;
+  margin-bottom:44px;
+  animation:fadeUp 0.8s ease 0.2s both;
+}
+.hero-actions{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+  animation:fadeUp 0.8s ease 0.3s both;
+}
+.btn-primary{
+  background:var(--white);color:var(--black);
+  border:none;padding:13px 28px;border-radius:100px;
+  font-size:14px;font-weight:500;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:opacity 0.2s;
+}
+.btn-primary:hover{opacity:0.88;}
+.btn-ghost{
+  background:transparent;color:var(--off-white);
+  border:1px solid var(--border2);padding:13px 28px;border-radius:100px;
+  font-size:14px;font-weight:400;cursor:pointer;
+  font-family:'Inter',sans-serif;transition:all 0.2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.3);color:var(--white);}
 
-/* WHO WE WORK WITH */
-.projects-section{padding:0 52px;border-bottom:1px solid var(--border);}
-.projects-header{display:flex;align-items:flex-end;justify-content:space-between;padding:64px 0 60px;border-bottom:1px solid var(--border);}
-.projects-header h2{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;letter-spacing:-1px;}
-.projects-header h2 em{font-style:italic;color:var(--blue);}
+/* hero scroll indicator */
+.hero-scroll{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:fadeUp 1s ease 0.8s both;
+}
+.hero-scroll span{font-size:11px;color:var(--muted2);letter-spacing:0.15em;text-transform:uppercase;}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--muted2),transparent);}
 
-.project-row{display:grid;grid-template-columns:60px 1fr auto auto;gap:40px;align-items:center;padding:34px 0;border-bottom:1px solid var(--border);cursor:none;transition:all 0.3s;}
-.project-row:last-child{border-bottom:none;}
-.project-num{font-size:12px;color:var(--blue);}
-.project-name{font-family:'Playfair Display',serif;font-size:clamp(20px,2.5vw,30px);font-weight:400;color:var(--muted);letter-spacing:-0.5px;transition:color 0.3s;}
-.project-row:hover .project-name{color:var(--cream);}
-.project-tag{font-size:11px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase;}
-.project-arrow{font-size:20px;color:var(--muted);transition:all 0.3s;}
-.project-row:hover .project-arrow{color:var(--blue);transform:translate(4px,-4px);}
-
-/* WHY */
-.why-section{padding:120px 52px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
-.why-title{font-family:'Playfair Display',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;line-height:1.25;letter-spacing:-0.5px;}
-.why-title em{font-style:italic;color:var(--blue);}
-.why-text{font-size:15px;color:var(--muted);line-height:1.9;font-weight:300;margin-bottom:28px;}
-.why-img{width:100%;height:400px;object-fit:cover;opacity:0.6;filter:grayscale(20%);margin-bottom:32px;}
-
-/* STATS */
-.stats-bar{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--border);}
-.stat-item{padding:48px 52px;border-right:1px solid var(--border);}
-.stat-item:last-child{border-right:none;}
-.stat-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;letter-spacing:-2px;color:var(--cream);line-height:1;}
-.stat-num span{color:var(--blue);}
-.stat-label{font-size:13px;color:var(--muted);margin-top:8px;}
-
-/* CTA */
-.cta-section{
-  padding:160px 52px;text-align:center;
-  position:relative;overflow:hidden;
+/* ── STATS ── */
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid var(--border);
   border-bottom:1px solid var(--border);
 }
-.cta-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08;filter:grayscale(50%);}
-.cta-overlay{position:absolute;inset:0;background:linear-gradient(to bottom, var(--black) 0%, rgba(12,12,12,0.6) 50%, var(--black) 100%);}
-.cta-inner{position:relative;z-index:2;}
-.cta-num{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;justify-content:center;gap:12px;}
-.cta-num::before,.cta-num::after{content:'';width:40px;height:1px;background:var(--blue);}
-.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(44px,8vw,110px);font-weight:900;line-height:0.92;letter-spacing:-4px;margin-bottom:40px;}
-.cta-section h2 em{font-style:italic;color:var(--blue);}
-.cta-sub{font-size:16px;color:var(--muted);margin-bottom:52px;font-weight:300;max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8;}
-.watermark{position:absolute;bottom:-30px;left:50%;transform:translateX(-50%);font-family:'Playfair Display',serif;font-size:clamp(80px,18vw,240px);font-weight:900;color:rgba(232,228,220,0.025);letter-spacing:-6px;white-space:nowrap;pointer-events:none;user-select:none;}
+.stat-item{
+  padding:44px 48px;border-right:1px solid var(--border);
+  position:relative;
+}
+.stat-item:last-child{border-right:none;}
+.stat-num{
+  font-family:'Instrument Serif',serif;
+  font-size:52px;font-weight:400;color:var(--white);
+  line-height:1;letter-spacing:-0.02em;margin-bottom:8px;
+}
+.stat-num sup{font-size:24px;color:var(--blue);}
+.stat-label{font-size:13px;color:var(--muted);font-weight:300;line-height:1.5;}
 
-/* FOOTER */
-footer{padding:64px 52px 40px;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:48px;}
-.footer-logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;letter-spacing:2px;margin-bottom:12px;}
-.footer-logo span{color:var(--blue);}
-.footer-tagline{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px;}
-.footer-col-label{font-size:11px;color:var(--blue);letter-spacing:0.2em;text-transform:uppercase;margin-bottom:20px;}
-.footer-links{display:flex;flex-direction:column;gap:13px;}
-.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color 0.3s;}
-.footer-links a:hover{color:var(--cream);}
-.footer-bottom{padding:24px 52px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:12px;color:var(--muted);}
-.footer-bottom a{color:var(--muted);text-decoration:none;transition:color 0.3s;}
-.footer-bottom a:hover{color:var(--cream);}
+/* ── SECTION SHARED ── */
+.section{padding:120px 48px;}
+.section-eyebrow{
+  font-size:11px;font-weight:500;color:var(--blue);
+  letter-spacing:0.12em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.section-title{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(36px,4.5vw,60px);
+  font-weight:400;line-height:1.08;letter-spacing:-0.025em;
+  color:var(--white);
+}
+.section-title em{font-style:italic;color:var(--blue);}
+.section-body{
+  font-size:16px;color:var(--muted);
+  line-height:1.8;font-weight:300;max-width:500px;
+}
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.9s ease,transform 0.9s ease;}
+/* ── ABOUT / SPLIT ── */
+.split{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+  border-top:1px solid var(--border);
+}
+.split-visual{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:40px;min-height:360px;
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;gap:16px;
+}
+.chat-bubble{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:12px;padding:14px 18px;
+  font-size:13px;color:var(--off-white);
+  line-height:1.6;max-width:85%;
+  opacity:0;transform:translateY(12px);
+  transition:opacity 0.5s ease, transform 0.5s ease;
+}
+.chat-bubble.visible{opacity:1;transform:translateY(0);}
+.chat-bubble.right{align-self:flex-end;background:var(--blue-dim);border-color:rgba(23,140,242,0.2);}
+.chat-bubble .label{font-size:10px;color:var(--muted2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.typing{display:flex;gap:4px;padding:6px 0;}
+.typing span{width:5px;height:5px;background:var(--muted);border-radius:50%;animation:bounce 1.2s ease infinite;}
+.typing span:nth-child(2){animation-delay:0.15s;}
+.typing span:nth-child(3){animation-delay:0.3s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-6px);}}
+
+/* ── SERVICES ── */
+.services-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  margin-top:60px;
+}
+.service-card{
+  background:var(--black);padding:44px 40px;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.service-card:hover{background:var(--surface);}
+.service-num{
+  font-size:11px;color:var(--muted2);letter-spacing:0.1em;
+  margin-bottom:24px;font-weight:500;
+}
+.service-icon{
+  width:44px;height:44px;
+  border:1px solid var(--border2);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:20px;
+  background:var(--surface2);
+}
+.service-icon svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.service-name{
+  font-family:'Instrument Serif',serif;
+  font-size:26px;font-weight:400;color:var(--white);
+  letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;
+}
+.service-desc{font-size:14px;color:var(--muted);line-height:1.75;font-weight:300;}
+.service-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
+.service-tag{
+  font-size:11px;color:var(--muted);
+  border:1px solid var(--border);border-radius:100px;
+  padding:4px 12px;
+}
+.service-arrow{
+  position:absolute;top:40px;right:40px;
+  font-size:18px;color:var(--muted2);
+  transition:all 0.3s;
+}
+.service-card:hover .service-arrow{color:var(--blue);transform:translate(3px,-3px);}
+
+/* ── WHO WE HELP ── */
+.clients-section{
+  border-top:1px solid var(--border);
+  padding:120px 48px;
+}
+.clients-list{margin-top:60px;border-top:1px solid var(--border);}
+.client-row{
+  display:grid;grid-template-columns:60px 1fr 200px 32px;
+  gap:40px;align-items:center;
+  padding:28px 0;border-bottom:1px solid var(--border);
+  cursor:default;transition:all 0.25s;
+}
+.client-row:hover .client-name{color:var(--white);}
+.client-row:hover .client-arrow{color:var(--blue);transform:translate(3px,-3px);}
+.client-idx{font-size:12px;color:var(--muted2);}
+.client-name{
+  font-family:'Instrument Serif',serif;
+  font-size:28px;font-weight:400;color:var(--muted);
+  letter-spacing:-0.02em;transition:color 0.25s;
+}
+.client-tag{font-size:12px;color:var(--muted2);letter-spacing:0.06em;text-align:right;}
+.client-arrow{font-size:18px;color:var(--muted2);transition:all 0.25s;}
+
+/* ── MARQUEE ── */
+.marquee-section{
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:28px 0;overflow:hidden;
+}
+.marquee-track{
+  display:flex;gap:0;
+  animation:marquee 28s linear infinite;
+  white-space:nowrap;
+}
+.marquee-track:hover{animation-play-state:paused;}
+.marquee-item{
+  display:inline-flex;align-items:center;gap:20px;
+  padding:0 28px;
+  font-family:'Instrument Serif',serif;
+  font-size:18px;font-weight:400;color:var(--muted2);
+  flex-shrink:0;
+}
+.marquee-item::after{content:'·';color:var(--blue);font-size:22px;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* ── WHY ── */
+.why-section{
+  border-top:1px solid var(--border);
+  padding:120px 48px;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:100px;align-items:start;
+}
+.why-left{}
+.why-right{}
+.why-point{
+  display:flex;gap:20px;padding:28px 0;
+  border-bottom:1px solid var(--border);
+}
+.why-point:last-child{border-bottom:none;}
+.why-point-num{
+  font-size:11px;color:var(--blue);
+  font-weight:500;padding-top:3px;flex-shrink:0;
+  width:24px;
+}
+.why-point-title{
+  font-family:'Instrument Serif',serif;
+  font-size:20px;font-weight:400;color:var(--white);
+  margin-bottom:8px;letter-spacing:-0.02em;
+}
+.why-point-desc{font-size:14px;color:var(--muted);line-height:1.75;font-weight:300;}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{
+  border-top:1px solid var(--border);
+  padding:120px 48px;
+}
+.testimonials-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;margin-top:60px;
+}
+.testimonial-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:32px;
+  display:flex;flex-direction:column;gap:24px;
+  transition:border-color 0.25s;
+}
+.testimonial-card:hover{border-color:var(--border2);}
+.t-quote{
+  font-family:'Instrument Serif',serif;
+  font-size:17px;font-weight:400;color:var(--off-white);
+  line-height:1.65;letter-spacing:-0.01em;flex:1;
+  font-style:italic;
+}
+.t-author{display:flex;align-items:center;gap:12px;}
+.t-avatar{
+  width:36px;height:36px;border-radius:50%;
+  background:var(--blue-dim);
+  border:1px solid rgba(23,140,242,0.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:13px;font-weight:500;color:var(--blue);flex-shrink:0;
+}
+.t-name{font-size:13px;color:var(--white);font-weight:500;margin-bottom:2px;}
+.t-role{font-size:12px;color:var(--muted);}
+.t-biz{
+  font-size:11px;color:var(--blue);letter-spacing:0.08em;
+  text-transform:uppercase;font-weight:500;margin-bottom:12px;
+}
+
+/* ── CTA ── */
+.cta-section{
+  border-top:1px solid var(--border);
+  padding:140px 48px;
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-glow{
+  position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);
+  width:800px;height:400px;
+  background:radial-gradient(ellipse at center, rgba(23,140,242,0.09) 0%, transparent 70%);
+  pointer-events:none;
+}
+.cta-eyebrow{
+  font-size:11px;color:var(--blue);letter-spacing:0.15em;text-transform:uppercase;
+  font-weight:500;margin-bottom:24px;
+  display:flex;align-items:center;justify-content:center;gap:12px;
+}
+.cta-eyebrow::before,.cta-eyebrow::after{content:'';width:32px;height:1px;background:rgba(23,140,242,0.4);}
+.cta-headline{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(48px,7vw,96px);
+  font-weight:400;line-height:0.98;letter-spacing:-0.03em;
+  color:var(--white);margin-bottom:24px;
+}
+.cta-headline em{font-style:italic;color:var(--blue);}
+.cta-sub{
+  font-size:16px;color:var(--muted);margin-bottom:44px;
+  font-weight:300;max-width:400px;margin-left:auto;margin-right:auto;
+  line-height:1.75;
+}
+.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:64px 48px 40px;
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
+  gap:48px;
+}
+.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.footer-tagline{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px;font-weight:300;}
+.footer-col-label{font-size:11px;color:var(--muted2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;font-weight:500;}
+.footer-links{display:flex;flex-direction:column;gap:11px;}
+.footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.footer-links a:hover{color:var(--white);}
+.footer-bottom{
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border);
+  font-size:12px;color:var(--muted2);
+}
+.footer-bottom a{color:var(--muted2);text-decoration:none;transition:color 0.2s;}
+.footer-bottom a:hover{color:var(--muted);}
+.footer-bottom-links{display:flex;gap:20px;}
+#nz-clock{font-family:monospace;}
+
+/* ── MODAL ── */
+.modal-backdrop{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,0.7);z-index:9000;
+  align-items:center;justify-content:center;padding:24px;
+  backdrop-filter:blur(4px);
+}
+.modal-backdrop.open{display:flex;}
+.modal-box{
+  background:var(--surface);border:1px solid var(--border2);
+  width:100%;max-width:500px;border-radius:20px;
+  padding:48px;position:relative;
+}
+.modal-close{
+  position:absolute;top:20px;right:20px;background:none;border:none;
+  color:var(--muted);font-size:20px;cursor:pointer;
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s,color 0.2s;
+}
+.modal-close:hover{background:var(--surface2);color:var(--white);}
+.modal-eyebrow{font-size:11px;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;margin-bottom:16px;}
+.modal-title{font-family:'Instrument Serif',serif;font-size:34px;font-weight:400;color:var(--white);line-height:1.05;letter-spacing:-0.02em;margin-bottom:32px;}
+.modal-title em{font-style:italic;color:var(--blue);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.form-group{margin-bottom:16px;}
+.form-label{display:block;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;font-weight:500;}
+.form-input,.form-textarea{
+  width:100%;background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:10px;color:var(--white);
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:300;
+  padding:11px 14px;outline:none;transition:border-color 0.2s;
+}
+.form-input:focus,.form-textarea:focus{border-color:rgba(23,140,242,0.5);}
+.form-input::placeholder,.form-textarea::placeholder{color:var(--muted2);}
+.form-textarea{resize:vertical;min-height:90px;}
+.form-divider{height:1px;background:var(--border);margin:8px 0 18px;}
+.form-submit{
+  width:100%;background:var(--white);color:var(--black);
+  border:none;padding:13px;border-radius:100px;
+  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
+  cursor:pointer;transition:opacity 0.2s;margin-top:4px;
+}
+.form-submit:hover{opacity:0.88;}
+.form-note{font-size:12px;color:var(--muted2);text-align:center;margin-top:12px;font-weight:300;}
+.form-success{display:none;text-align:center;padding:20px 0;}
+.success-ring{
+  width:52px;height:52px;border-radius:50%;
+  border:1px solid rgba(23,140,242,0.3);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;color:var(--blue);font-size:22px;
+}
+.success-title{font-family:'Instrument Serif',serif;font-size:28px;color:var(--white);margin-bottom:10px;letter-spacing:-0.02em;}
+.success-title em{font-style:italic;color:var(--blue);}
+.success-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;}
+
+/* ── REVEAL ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
-.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 0.8s ease,transform 0.8s ease;}
 .reveal-left.visible{opacity:1;transform:translateX(0);}
+.reveal-right{opacity:0;transform:translateX(24px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal-right.visible{opacity:1;transform:translateX(0);}
 
+/* ── KEYFRAMES ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── RESPONSIVE ── */
 @media(max-width:900px){
-  nav{padding:18px 24px;}
+  nav{padding:0 20px;}
   .nav-links{display:none;}
-  .hero,.belief,.services-section,.projects-section,.why-section,.cta-section,.stats-bar{padding-left:24px;padding-right:24px;}
-  .hero h1{letter-spacing:-1px;}
-  .belief{grid-template-columns:1fr;}
-  .service-row{grid-template-columns:40px 1fr;gap:16px;}
-  .service-row-tags,.service-arrow{display:none;}
-  .why-section{grid-template-columns:1fr;}
-  .project-row{grid-template-columns:40px 1fr auto;}
-  .project-tag{display:none;}
-  .stats-bar{grid-template-columns:1fr 1fr;}
-  .stat-item{padding:32px 24px;}
-  footer{grid-template-columns:1fr 1fr;padding:40px 24px 24px;}
-  .footer-bottom{flex-direction:column;gap:12px;padding:20px 24px;text-align:center;}
-  .hero-scroll{display:none;}
-  .projects-header,.services-header{flex-direction:column;align-items:flex-start;gap:20px;}
+  .hero{padding:110px 20px 70px;}
+  .hero-wm{font-size:90px;}
+  .stats{grid-template-columns:1fr;}
+  .stat-item{padding:32px 20px;border-right:none;border-bottom:1px solid var(--border);}
+  .section{padding:72px 20px;}
+  .split{grid-template-columns:1fr;gap:40px;}
+  .services-grid{grid-template-columns:1fr;}
+  .clients-section{padding:72px 20px;}
+  .client-row{grid-template-columns:40px 1fr auto;gap:16px;}
+  .client-tag{display:none;}
+  .why-section{grid-template-columns:1fr;gap:0;padding:72px 20px;}
+  .testimonials-grid{grid-template-columns:1fr;}
+  .cta-section{padding:80px 20px;}
+  footer{grid-template-columns:1fr 1fr;padding:40px 20px 24px;}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:16px 20px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
 }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">NEX<span>LY</span></a>
+  <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#" class="nav-logo" style="text-decoration:none;display:inline-block;line-height:1;">
+    <svg width="96" height="30" viewBox="0 0 96 30" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+      <text y="24" font-family="&#39;Instrument Serif&#39;, Georgia, serif" font-size="26" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
+    </svg>
+  </a>
   <div class="nav-links">
-    <a href="#belief">About</a>
-    <a href="#services">Services</a>
-    <a href="#projects">Who we help</a>
-    <a href="#contact">Contact</a>
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#about">About</a>
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#services">Services</a>
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#clients">Who we help</a>
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#why">Why Nexly</a>
   </div>
-  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start your journey</button>
+  <div class="nav-right">
+    <button class="nav-demo" onclick="openModal()">Book a free demo</button>
+  </div>
 </nav>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="hero-blue-line"></div>
-  <img class="hero-bg-img" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=80" alt="" aria-hidden="true"/>
-  <div class="hero-eyebrow">AI-Powered Business Solutions — New Zealand</div>
-  <h1>We<br/><em>Connect</em><br/>Businesses.</h1>
-  <div class="hero-bottom">
-    <p class="hero-desc">Nexly empowers businesses with intelligent AI chatbots and high-converting digital tools that amplify the human touch — generating more leads and driving growth around the clock.</p>
-    <div class="hero-actions">
-      <button class="btn-main" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Start your journey</button>
-      <button class="btn-outline" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See services</button>
-    </div>
+<div class="hero" id="hero-section">
+  <div class="hero-grain"></div>
+  <div class="hero-glow"></div>
+
+  <div class="hero-pill">
+    <div class="hero-pill-dot"></div>
+    AI-powered business solutions · New Zealand
   </div>
-  <div class="hero-scroll">Scroll</div>
+
+  <h1 class="hero-headline">
+    Your business,<br><em>always on.</em>
+  </h1>
+
+  <p class="hero-sub">
+    Nexly builds intelligent AI chatbots, websites, and digital tools that help New Zealand businesses capture more leads and grow — 24 hours a day, on autopilot.
+  </p>
+
+  <div class="hero-actions">
+    <button class="btn-primary" onclick="openModal()">Book a free demo</button>
+    <button class="btn-ghost" onclick="document.getElementById(&#39;services&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">See what we build</button>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </div>
 
 <!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-item reveal"><div class="stat-num">24<span>/7</span></div><div class="stat-label">Always-on AI support</div></div>
-  <div class="stat-item reveal"><div class="stat-num">10<span>min</span></div><div class="stat-label">Average client setup time</div></div>
-  <div class="stat-item reveal"><div class="stat-num">NZ<span>$0</span></div><div class="stat-label">Upfront cost to get started</div></div>
-  <div class="stat-item reveal"><div class="stat-num">100<span>%</span></div><div class="stat-label">New Zealand owned</div></div>
+<div class="stats">
+  <div class="stat-item reveal">
+    <div class="stat-num" data-target="24" data-suffix="/7">0</div>
+    <div class="stat-label">Always-on AI support — your business never sleeps</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num" data-target="3" data-prefix="x">0</div>
+    <div class="stat-label">More leads captured after-hours on average</div>
+  </div>
+  <div class="stat-item reveal">
+    <div class="stat-num" data-target="100" data-suffix="%">0</div>
+    <div class="stat-label">New Zealand owned and operated</div>
+  </div>
 </div>
 
-<!-- BELIEF -->
-<div class="belief" id="belief">
-  <div class="belief-left reveal-left">
-    <div class="belief-num">(01) — Our Belief</div>
-    <h2>When we believe in your business, we put <em>everything on the line</em> to make sure your customers never miss you — day or night.</h2>
-    <div class="belief-cols" style="margin-top:40px;">
-      <div>
-        <div class="belief-col-label">↓ The Problem</div>
-        <div class="belief-col-text">Most businesses lose leads every single day — after-hours enquiries that go unanswered, appointments that never get booked. The world moves fast.</div>
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item">AI Chatbots</div>
+    <div class="marquee-item">Lead Capture</div>
+    <div class="marquee-item">Website Design</div>
+    <div class="marquee-item">Booking Automation</div>
+    <div class="marquee-item">WhatsApp Bots</div>
+    <div class="marquee-item">Growth Retainers</div>
+    <div class="marquee-item">SEO Optimised</div>
+    <div class="marquee-item">24/7 Support</div>
+    <div class="marquee-item">We Connect</div>
+    <div class="marquee-item">AI Chatbots</div>
+    <div class="marquee-item">Lead Capture</div>
+    <div class="marquee-item">Website Design</div>
+    <div class="marquee-item">Booking Automation</div>
+    <div class="marquee-item">WhatsApp Bots</div>
+    <div class="marquee-item">Growth Retainers</div>
+    <div class="marquee-item">SEO Optimised</div>
+    <div class="marquee-item">24/7 Support</div>
+    <div class="marquee-item">We Connect</div>
+  </div>
+</div>
+
+<!-- ABOUT / SPLIT -->
+<div class="section" id="about">
+  <div class="split">
+    <div class="reveal-left">
+      <div class="section-eyebrow">What is Nexly</div>
+      <h2 class="section-title" style="margin-bottom:24px;">Built for businesses that can't afford to miss a lead</h2>
+      <p class="section-body" style="margin-bottom:20px;">
+        People don't wait anymore. If your business doesn't respond at 9pm on a Sunday, your competitor's will. Nexly puts an intelligent AI assistant on your business — answering questions, capturing leads, and booking appointments while you sleep.
+      </p>
+      <p class="section-body">
+        Founded in New Zealand, built for New Zealand businesses. No tech knowledge needed on your end.
+      </p>
+    </div>
+    <div class="split-visual reveal-right" id="chatDemo">
+      <div class="chat-bubble">
+        <div class="label">Customer · 10:47 PM</div>
+        Hey, do you have availability for a cut and colour this Saturday?
       </div>
-      <div>
-        <div class="belief-col-label">↓ The Solution</div>
-        <div class="belief-col-text">Nexly puts an intelligent AI assistant on your business — answering questions, capturing leads, and booking appointments while you sleep.</div>
+      <div class="chat-bubble right">
+        <div class="label">Nexly AI · instant</div>
+        Hi there! Yes, we have a 10am and 2pm slot this Saturday. Want me to book you in? Just drop your name and I'll confirm it now 😊
+      </div>
+      <div class="chat-bubble">
+        <div class="label">Customer · 10:47 PM</div>
+        Amazing — Jane Smith please, the 10am works!
+      </div>
+      <div class="chat-bubble right">
+        <div class="label">Nexly AI · instant</div>
+        <div>Done! You're booked for Saturday at 10am. You'll get a reminder the day before. See you then, Jane! ✨</div>
       </div>
     </div>
-  </div>
-  <div class="belief-right reveal">
-    <img class="belief-img" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80" alt="Business owner working with digital tools"/>
   </div>
 </div>
 
 <!-- SERVICES -->
-<div class="services-section" id="services">
-  <div class="services-header reveal">
-    <div>
-      <div class="section-label-sm">(03) — What we build with you</div>
-      <h2>Everything your business<br/><em>needs to grow</em></h2>
-    </div>
-    <a href="#contact" class="cta-link">Start your journey →</a>
+<div class="section" id="services" style="border-top:1px solid var(--border);padding-bottom:0;">
+  <div class="reveal">
+    <div class="section-eyebrow">What we build with you</div>
+    <h2 class="section-title">Everything your business<br><em>needs to grow</em></h2>
   </div>
-  <div class="service-row reveal">
-    <div class="service-row-num">01</div>
-    <div class="service-row-name">AI Chatbots &amp;<br/><em>Lead Capture</em></div>
-    <div class="service-row-tags">
-      <div class="service-tag">24/7 customer support</div>
-      <div class="service-tag">Lead &amp; callback capture</div>
-      <div class="service-tag">FAQ automation</div>
-      <div class="service-tag">Multilingual support</div>
+  <div class="services-grid reveal" style="margin-bottom:0;">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      </div>
+      <div class="service-name">AI Chatbots &amp; Lead Capture</div>
+      <div class="service-desc">An AI assistant trained on your business — answering questions, capturing leads, and qualifying customers around the clock. No scripts, no wait times.</div>
+      <div class="service-tags">
+        <span class="service-tag">24/7 support</span>
+        <span class="service-tag">Lead capture</span>
+        <span class="service-tag">FAQ automation</span>
+        <span class="service-tag">Multilingual</span>
+      </div>
+      <div class="service-arrow">↗</div>
     </div>
-    <div class="service-arrow">↗</div>
-  </div>
-  <div class="service-row reveal">
-    <div class="service-row-num">02</div>
-    <div class="service-row-name">Website Design<br/><em>&amp; Development</em></div>
-    <div class="service-row-tags">
-      <div class="service-tag">Mobile-first design</div>
-      <div class="service-tag">SEO optimised</div>
-      <div class="service-tag">Conversion focused</div>
-      <div class="service-tag">CMS included</div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18M9 21V9"></path></svg>
+      </div>
+      <div class="service-name">Website Design &amp; Development</div>
+      <div class="service-desc">Mobile-first, conversion-focused websites that load fast and look sharp. Built to rank on Google and turn visitors into customers.</div>
+      <div class="service-tags">
+        <span class="service-tag">Mobile-first</span>
+        <span class="service-tag">SEO optimised</span>
+        <span class="service-tag">CMS included</span>
+        <span class="service-tag">Fast delivery</span>
+      </div>
+      <div class="service-arrow">↗</div>
     </div>
-    <div class="service-arrow">↗</div>
-  </div>
-  <div class="service-row reveal">
-    <div class="service-row-num">03</div>
-    <div class="service-row-name">Booking &amp;<br/><em>Calendar Integration</em></div>
-    <div class="service-row-tags">
-      <div class="service-tag">Google Calendar sync</div>
-      <div class="service-tag">Auto-confirmation</div>
-      <div class="service-tag">Appointment reminders</div>
-      <div class="service-tag">Zero admin</div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path><circle cx="8" cy="15" r="1" fill="#178CF2" stroke="none"></circle><circle cx="12" cy="15" r="1" fill="#178CF2" stroke="none"></circle></svg>
+      </div>
+      <div class="service-name">Booking &amp; Calendar Integration</div>
+      <div class="service-desc">Let customers book appointments directly through your AI chatbot or website, with automatic confirmations and reminders. Zero admin.</div>
+      <div class="service-tags">
+        <span class="service-tag">Google Calendar</span>
+        <span class="service-tag">Auto-confirm</span>
+        <span class="service-tag">SMS reminders</span>
+        <span class="service-tag">Zero admin</span>
+      </div>
+      <div class="service-arrow">↗</div>
     </div>
-    <div class="service-arrow">↗</div>
-  </div>
-  <div class="service-row reveal">
-    <div class="service-row-num">04</div>
-    <div class="service-row-name">Growth &amp;<br/><em>Automation Retainers</em></div>
-    <div class="service-row-tags">
-      <div class="service-tag">Monthly performance reports</div>
-      <div class="service-tag">Review protection</div>
-      <div class="service-tag">WhatsApp bots</div>
-      <div class="service-tag">AI content writing</div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+      </div>
+      <div class="service-name">Growth &amp; Automation Retainers</div>
+      <div class="service-desc">Monthly partnerships that keep your business ahead — performance reports, review protection, WhatsApp bots, AI content, and ongoing improvements.</div>
+      <div class="service-tags">
+        <span class="service-tag">Monthly reports</span>
+        <span class="service-tag">Review protection</span>
+        <span class="service-tag">WhatsApp bots</span>
+        <span class="service-tag">AI content</span>
+      </div>
+      <div class="service-arrow">↗</div>
     </div>
-    <div class="service-arrow">↗</div>
   </div>
 </div>
 
-<!-- IMAGE BREAK -->
-<div class="img-break">
-  <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1800&q=80" alt="Team working on digital solutions"/>
-  <div class="img-break-overlay">
-    <div class="img-break-text">We <em>Connect</em><br/>People &amp; Business.</div>
+<!-- WHO WE HELP -->
+<div class="clients-section" id="clients">
+  <div class="reveal">
+    <div class="section-eyebrow">Who we work with</div>
+    <h2 class="section-title">Built for New Zealand<br><em>businesses</em></h2>
   </div>
-</div>
-
-<!-- WHO WE WORK WITH -->
-<div class="projects-section" id="projects">
-  <div class="projects-header reveal">
-    <div>
-      <div class="section-label-sm">(02) — Who we work with</div>
-      <h2>Built for New Zealand<br/><em>businesses</em></h2>
-    </div>
-    <a href="#contact" class="cta-link">Get in touch →</a>
+  <div class="clients-list">
+    <div class="client-row reveal"><div class="client-idx">01</div><div class="client-name">Hair Salons &amp; Beauty</div><div class="client-tag">Chatbot + Booking</div><div class="client-arrow">↗</div></div>
+    <div class="client-row reveal"><div class="client-idx">02</div><div class="client-name">Dental &amp; Medical Clinics</div><div class="client-tag">Lead Capture + FAQ</div><div class="client-arrow">↗</div></div>
+    <div class="client-row reveal"><div class="client-idx">03</div><div class="client-name">Trades &amp; Local Services</div><div class="client-tag">Quotes + Callbacks</div><div class="client-arrow">↗</div></div>
+    <div class="client-row reveal"><div class="client-idx">04</div><div class="client-name">Gyms &amp; Personal Trainers</div><div class="client-tag">Membership + Booking</div><div class="client-arrow">↗</div></div>
+    <div class="client-row reveal"><div class="client-idx">05</div><div class="client-name">Restaurants &amp; Hospitality</div><div class="client-tag">Reservations + Menu</div><div class="client-arrow">↗</div></div>
+    <div class="client-row reveal"><div class="client-idx">06</div><div class="client-name">Estate Agents &amp; Property</div><div class="client-tag">Leads + Viewings</div><div class="client-arrow">↗</div></div>
   </div>
-  <div class="project-row reveal"><div class="project-num">01</div><div class="project-name">Hair Salons &amp; Beauty</div><div class="project-tag">Chatbot + Booking</div><div class="project-arrow">↗</div></div>
-  <div class="project-row reveal"><div class="project-num">02</div><div class="project-name">Dental &amp; Medical Clinics</div><div class="project-tag">Lead Capture + FAQ</div><div class="project-arrow">↗</div></div>
-  <div class="project-row reveal"><div class="project-num">03</div><div class="project-name">Trades &amp; Local Services</div><div class="project-tag">Quotes + Callbacks</div><div class="project-arrow">↗</div></div>
-  <div class="project-row reveal"><div class="project-num">04</div><div class="project-name">Gyms &amp; Personal Trainers</div><div class="project-tag">Membership + Booking</div><div class="project-arrow">↗</div></div>
-  <div class="project-row reveal"><div class="project-num">05</div><div class="project-name">Restaurants &amp; Hospitality</div><div class="project-tag">Reservations + Menu</div><div class="project-arrow">↗</div></div>
-  <div class="project-row reveal"><div class="project-num">06</div><div class="project-name">Estate Agents &amp; Property</div><div class="project-tag">Leads + Viewings</div><div class="project-arrow">↗</div></div>
 </div>
 
 <!-- WHY -->
-<div class="why-section reveal">
-  <div>
-    <div class="section-label-sm">(04) — Why it matters</div>
-    <div class="why-title" style="margin-top:20px;">In a world full of noise, the businesses that <em>respond fastest</em> win the customer.</div>
+<div class="why-section" id="why">
+  <div class="reveal-left">
+    <div class="section-eyebrow">Why it matters</div>
+    <h2 class="section-title" style="margin-bottom:24px;">The fastest business<br>wins the <em>customer.</em></h2>
+    <p class="section-body">In a world full of noise, the businesses that respond first win. Nexly closes that gap — permanently.</p>
   </div>
-  <div>
-    <img class="why-img" src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=900&q=80" alt="Business growth and connection"/>
-    <p class="why-text">People don't wait anymore. If your business doesn't answer at 9pm on a Sunday, your competitor's will. The businesses growing fastest right now aren't bigger — they're just more available.</p>
-    <p class="why-text">Nexly closes that gap. An AI assistant that sounds like your business, knows your services, and never takes a day off. Your customers get answers instantly. You get the lead — every time.</p>
-    <a href="#contact" class="cta-link">Start your journey →</a>
+  <div class="reveal-right">
+    <div class="why-point">
+      <div class="why-point-num">01</div>
+      <div>
+        <div class="why-point-title">You're losing leads after hours</div>
+        <div class="why-point-desc">Most enquiries come outside business hours. Without an AI assistant, those leads go unanswered — and straight to your competitor.</div>
+      </div>
+    </div>
+    <div class="why-point">
+      <div class="why-point-num">02</div>
+      <div>
+        <div class="why-point-title">Speed is the new competitive advantage</div>
+        <div class="why-point-desc">Studies show 78% of customers buy from the business that responds first. Nexly makes you that business, every single time.</div>
+      </div>
+    </div>
+    <div class="why-point">
+      <div class="why-point-num">03</div>
+      <div>
+        <div class="why-point-title">No tech knowledge required</div>
+        <div class="why-point-desc">We handle everything. You tell us about your business, we build it, we run it. You just watch the leads come in.</div>
+      </div>
+    </div>
+    <div class="why-point">
+      <div class="why-point-num">04</div>
+      <div>
+        <div class="why-point-title">NZ$0 upfront to get started</div>
+        <div class="why-point-desc">No large upfront costs, no long-term lock-in. Start with a free demo chatbot and see the difference before you commit to anything.</div>
+      </div>
+    </div>
   </div>
 </div>
 
 <!-- CTA -->
 <div class="cta-section" id="contact">
-  <img class="cta-bg-img" src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1800&q=80" alt=""/>
-  <div class="cta-overlay"></div>
-  <div class="cta-inner">
-    <div class="watermark">NEXLY</div>
-    <div class="cta-num">We're always excited to hear from businesses ready to grow.</div>
-    <h2>Don't be<br/><em>invisible</em><br/>overnight.</h2>
-    <p class="cta-sub">Get a free demo chatbot for your business — no commitment, no tech knowledge needed on your end.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <button class="btn-main" onclick="document.getElementById('nxModal').style.display='flex'" style="font-size:15px;padding:16px 44px;">Book a free demo</button>
-      <button class="btn-outline" onclick="alert('Call us: 0800 NEXLY')" style="font-size:15px;padding:16px 44px;">Call us</button>
-    </div>
+  <div class="cta-glow"></div>
+  <div class="cta-eyebrow">Get started today</div>
+  <h2 class="cta-headline reveal">Don't be<br><em>invisible</em><br>overnight.</h2>
+  <p class="cta-sub reveal">Get a free demo chatbot for your business — no commitment, no tech knowledge needed on your end.</p>
+  <div class="cta-actions reveal">
+    <button class="btn-primary" style="font-size:15px;padding:14px 32px;" onclick="openModal()">Book a free demo</button>
+    <button class="btn-ghost" style="font-size:15px;padding:14px 32px;" onclick="alert(&#39;Call us: 0800 NEXLY&#39;)">Call us</button>
   </div>
 </div>
 
 <!-- FOOTER -->
 <footer>
   <div>
-    <div class="footer-logo">NEX<span>LY</span></div>
+    <div class="footer-logo-wrap">
+      <svg width="86" height="28" viewBox="0 0 86 28" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+        <text y="22" font-family="&#39;Instrument Serif&#39;, Georgia, serif" font-size="24" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
+      </svg>
+    </div>
     <div class="footer-tagline">AI-powered digital solutions for New Zealand businesses. We Connect.</div>
   </div>
   <div>
     <div class="footer-col-label">Navigate</div>
     <div class="footer-links">
-      <a href="#belief">About</a>
-      <a href="#services">Services</a>
-      <a href="#projects">Who we help</a>
-      <a href="#contact">Contact</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#about">About</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#services">Services</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#clients">Who we help</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#contact">Contact</a>
     </div>
   </div>
   <div>
     <div class="footer-col-label">Services</div>
     <div class="footer-links">
-      <a href="#services">AI Chatbots</a>
-      <a href="#services">Website Design</a>
-      <a href="#services">Booking Integration</a>
-      <a href="#services">Growth Retainers</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#services">AI Chatbots</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#services">Website Design</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#services">Booking Integration</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#services">Growth Retainers</a>
     </div>
   </div>
   <div>
     <div class="footer-col-label">Connect</div>
     <div class="footer-links">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Facebook</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#">Instagram</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#">LinkedIn</a>
+      <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#">Facebook</a>
       <a href="mailto:hello@nexly.co.nz">hello@nexly.co.nz</a>
     </div>
   </div>
 </footer>
 <div class="footer-bottom">
-  <div>©2026 Nexly — We Connect</div>
-  <div id="clock" style="font-family:monospace;letter-spacing:0.05em;"></div>
-  <div style="display:flex;gap:20px;">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Cookies</a>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <svg width="72" height="22" viewBox="0 0 72 22" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
+      <text y="18" font-family="&#39;Instrument Serif&#39;, Georgia, serif" font-size="20" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
+    </svg>
+    <span style="font-size:12px;color:#5a5855;">© 2026 · We Connect</span>
+  </div>
+  <div id="nz-clock">NZ 07:41:14 pm NZST</div>
+  <div class="footer-bottom-links">
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#">Privacy</a>
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#">Terms</a>
+    <a href="file:///C:/Users/jorda/Downloads/nexly_7.html#">Cookies</a>
   </div>
 </div>
 
-<script>
-// Cursor
-const cursor=document.getElementById('cursor');
-const ring=document.getElementById('cursorRing');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.left=mx+'px';cursor.style.top=my+'px';});
-(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
-document.querySelectorAll('a,button,.project-row,.service-row').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{ring.style.width='56px';ring.style.height='56px';ring.style.borderColor='rgba(23,140,242,0.6)';});
-  el.addEventListener('mouseleave',()=>{ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(232,228,220,0.35)';});
-});
-
-// Clock
-function updateClock(){const el=document.getElementById('clock');if(!el)return;const t=new Date().toLocaleTimeString('en-NZ',{timeZone:'Pacific/Auckland',hour:'2-digit',minute:'2-digit',second:'2-digit'});el.textContent='NZ '+t+' (NZST)';}
-updateClock();setInterval(updateClock,1000);
-
-// Reveal
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.08});
-document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
-</script>
-<div id="nxModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:9000;align-items:center;justify-content:center;padding:24px;" onclick="if(event.target===this){closeNxModal();}">
-  <div style="background:#0C0C0C;border:1px solid rgba(232,228,220,0.09);width:100%;max-width:500px;padding:52px 48px 44px;position:relative;">
-    <button onclick="closeNxModal()" style="position:absolute;top:20px;right:22px;background:none;border:none;color:#7A7870;font-size:18px;cursor:none;font-family:'DM Sans',sans-serif;transition:color 0.3s;" onmouseenter="this.style.color='#E8E4DC'" onmouseleave="this.style.color='#7A7870'">✕</button>
-
-    <div id="nxForm">
-      <div class="hero-eyebrow" style="margin-bottom:18px;">Free demo — no commitment</div>
-      <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:#E8E4DC;line-height:0.95;letter-spacing:-1.5px;margin-bottom:36px;">Let's get<br/>your business<br/><em style="font-style:italic;color:#178CF2;">growing.</em></div>
-
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
-        <div style="margin-bottom:18px;">
-          <label style="display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:#7A7870;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Full name</label>
-          <input id="nx-name" type="text" placeholder="Jane Smith" style="width:100%;background:rgba(232,228,220,0.03);border:1px solid rgba(232,228,220,0.09);color:#E8E4DC;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;padding:11px 14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#178CF2'" onblur="this.style.borderColor='rgba(232,228,220,0.09)'"/>
+<!-- DEMO MODAL -->
+<div class="modal-backdrop" id="demoModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div id="modalForm">
+      <div class="modal-eyebrow">Free demo · no commitment</div>
+      <div class="modal-title">Let's get your<br>business <em>growing.</em></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Full name</label>
+          <input id="f-name" class="form-input" type="text" placeholder="Jane Smith">
         </div>
-        <div style="margin-bottom:18px;">
-          <label style="display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:#7A7870;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Phone</label>
-          <input id="nx-phone" type="tel" placeholder="+64 21 000 000" style="width:100%;background:rgba(232,228,220,0.03);border:1px solid rgba(232,228,220,0.09);color:#E8E4DC;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;padding:11px 14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#178CF2'" onblur="this.style.borderColor='rgba(232,228,220,0.09)'"/>
+        <div class="form-group">
+          <label class="form-label">Phone</label>
+          <input id="f-phone" class="form-input" type="tel" placeholder="+64 21 000 000">
         </div>
       </div>
-
-      <div style="margin-bottom:18px;">
-        <label style="display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:#7A7870;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Email address</label>
-        <input id="nx-email" type="email" placeholder="jane@yourbusiness.co.nz" style="width:100%;background:rgba(232,228,220,0.03);border:1px solid rgba(232,228,220,0.09);color:#E8E4DC;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;padding:11px 14px;outline:none;box-sizing:border-box;" onfocus="this.style.borderColor='#178CF2'" onblur="this.style.borderColor='rgba(232,228,220,0.09)'"/>
+      <div class="form-group">
+        <label class="form-label">Email address</label>
+        <input id="f-email" class="form-input" type="email" placeholder="jane@yourbusiness.co.nz">
       </div>
-
-      <div style="height:1px;background:rgba(232,228,220,0.07);margin:4px 0 20px;"></div>
-
-      <div style="margin-bottom:18px;">
-        <label style="display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:#7A7870;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px;">Notes <span style="color:rgba(122,120,112,0.45);letter-spacing:0;text-transform:none;">— optional</span></label>
-        <textarea id="nx-notes" placeholder="Tell us a bit about your business and what you're looking for…" style="width:100%;background:rgba(232,228,220,0.03);border:1px solid rgba(232,228,220,0.09);color:#E8E4DC;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;padding:11px 14px;outline:none;box-sizing:border-box;resize:vertical;min-height:90px;" onfocus="this.style.borderColor='#178CF2'" onblur="this.style.borderColor='rgba(232,228,220,0.09)'"></textarea>
+      <div class="form-divider"></div>
+      <div class="form-group">
+        <label class="form-label">Notes <span style="color:var(--muted2);text-transform:none;letter-spacing:0;">— optional</span></label>
+        <textarea id="f-notes" class="form-textarea" placeholder="Tell us about your business and what you&#39;re looking to achieve…"></textarea>
       </div>
-
-      <button onclick="submitNxModal()" style="width:100%;background:#178CF2;color:#fff;border:none;padding:14px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;letter-spacing:0.05em;cursor:none;transition:opacity 0.25s;" onmouseenter="this.style.opacity='0.85'" onmouseleave="this.style.opacity='1'">Book my free demo &nbsp;→</button>
-      <p style="font-family:'DM Sans',sans-serif;font-size:12px;color:#7A7870;text-align:center;margin-top:14px;font-weight:300;">No credit card · No tech knowledge needed · NZ-based team</p>
+      <button class="form-submit" onclick="submitModal()">Book my free demo →</button>
+      <div class="form-note">No credit card · No tech knowledge needed · NZ-based team</div>
     </div>
-
-    <div id="nxSuccess" style="display:none;text-align:center;padding:24px 0 8px;">
-      <div style="width:52px;height:52px;border:1px solid rgba(23,140,242,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:#178CF2;font-size:20px;">✓</div>
-      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:400;color:#E8E4DC;margin-bottom:10px;">We'll be in <em style="font-style:italic;color:#178CF2;">touch.</em></div>
-      <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:#7A7870;line-height:1.7;font-weight:300;">Thanks — someone from the Nexly team<br/>will reach out within one business day.</p>
+    <div class="form-success" id="modalSuccess">
+      <div class="success-ring">✓</div>
+      <div class="success-title">We'll be in <em>touch.</em></div>
+      <div class="success-desc">Thanks — someone from the Nexly team will reach out within one business day to set up your free demo.</div>
     </div>
   </div>
 </div>
 
 <script>
-function closeNxModal(){
-  document.getElementById('nxModal').style.display='none';
-  document.getElementById('nxForm').style.display='block';
-  document.getElementById('nxSuccess').style.display='none';
-  ['nx-name','nx-email','nx-phone','nx-notes'].forEach(function(id){document.getElementById(id).value='';});
+/* ── COUNTER ANIMATION ── */
+function animateCounter(el){
+  const target=parseInt(el.dataset.target);
+  const suffix=el.dataset.suffix||'';
+  const prefix=el.dataset.prefix||'';
+  const dur=1600;const start=performance.now();
+  function step(now){
+    const p=Math.min((now-start)/dur,1);
+    const ease=1-Math.pow(1-p,3);
+    el.textContent=prefix+Math.round(ease*target)+suffix;
+    if(p<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
-function submitNxModal(){
-  var n=document.getElementById('nx-name').value.trim();
-  var e=document.getElementById('nx-email').value.trim();
-  var p=document.getElementById('nx-phone').value.trim();
+
+/* ── INTERSECTION OBSERVER ── */
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      if(e.target.classList.contains('stat-item')){
+        const num=e.target.querySelector('.stat-num');
+        if(num&&!num.dataset.animated){num.dataset.animated='1';animateCounter(num);}
+      }
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stat-item').forEach(el=>revealObs.observe(el));
+
+/* ── CHAT BUBBLE SEQUENCE ── */
+const chatObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const bubbles=e.target.querySelectorAll('.chat-bubble');
+      bubbles.forEach((b,i)=>setTimeout(()=>b.classList.add('visible'),i*320+200));
+      chatObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.2});
+const chatDemo=document.getElementById('chatDemo');
+if(chatDemo)chatObs.observe(chatDemo);
+
+/* ── CLOCK ── */
+function tick(){
+  const el=document.getElementById('nz-clock');
+  if(!el)return;
+  const t=new Date().toLocaleTimeString('en-NZ',{timeZone:'Pacific/Auckland',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  el.textContent='NZ '+t+' NZST';
+}
+tick();setInterval(tick,1000);
+
+/* ── MODAL ── */
+function openModal(){document.getElementById('demoModal').classList.add('open');}
+function closeModal(){
+  document.getElementById('demoModal').classList.remove('open');
+  setTimeout(()=>{
+    document.getElementById('modalForm').style.display='block';
+    document.getElementById('modalSuccess').style.display='none';
+    ['f-name','f-email','f-phone','f-notes'].forEach(id=>document.getElementById(id).value='');
+  },300);
+}
+function submitModal(){
+  const n=document.getElementById('f-name').value.trim();
+  const e=document.getElementById('f-email').value.trim();
+  const p=document.getElementById('f-phone').value.trim();
   if(!n||!e||!p){alert('Please fill in your name, email, and phone number.');return;}
-  document.getElementById('nxForm').style.display='none';
-  document.getElementById('nxSuccess').style.display='block';
+  document.getElementById('modalForm').style.display='none';
+  document.getElementById('modalSuccess').style.display='block';
 }
 </script>
-</body>
-</html>
+
+
+</body></html>
