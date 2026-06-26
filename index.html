@@ -914,14 +914,47 @@ function closeModal(){
     ['f-name','f-email','f-phone','f-notes'].forEach(id=>document.getElementById(id).value='');
   },300);
 }
-function submitModal(){
+async function submitModal(){
   const n=document.getElementById('f-name').value.trim();
   const e=document.getElementById('f-email').value.trim();
   const p=document.getElementById('f-phone').value.trim();
+  const notes=document.getElementById('f-notes').value.trim();
   if(!n||!e||!p){alert('Please fill in your name, email, and phone number.');return;}
-  document.getElementById('modalForm').style.display='none';
-  document.getElementById('modalSuccess').style.display='block';
+
+  const btn=document.querySelector('.form-submit');
+  btn.textContent='Sending…';
+  btn.style.opacity='0.6';
+  btn.disabled=true;
+
+  try{
+    const res=await fetch('https://formspree.io/f/xrewqzrw',{ 
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({
+        name:n,
+        email:e,
+        phone:p,
+        notes:notes
+      })
+    });
+    const data=await res.json();
+    if(res.ok){
+      document.getElementById('modalForm').style.display='none';
+      document.getElementById('modalSuccess').style.display='block';
+    } else {
+      alert('Something went wrong: '+(data?.errors?.[0]?.message||'Please try again.'));
+      btn.textContent='Book my free demo →';
+      btn.style.opacity='1';
+      btn.disabled=false;
+    }
+  } catch(err){
+    alert('Could not send — please check your connection and try again.');
+    btn.textContent='Book my free demo →';
+    btn.style.opacity='1';
+    btn.disabled=false;
+  }
 }
+
 </script>
 </body>
 </html>
