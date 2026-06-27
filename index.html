@@ -9,426 +9,196 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --black:#0a0a0a;
-  --surface:#111111;
-  --surface2:#161616;
-  --border:rgba(255,255,255,0.08);
-  --border2:rgba(255,255,255,0.12);
-  --white:#ffffff;
-  --off-white:#e8e6e1;
-  --muted:#888580;
-  --muted2:#5a5855;
-  --blue:#178CF2;
-  --blue-dim:rgba(23,140,242,0.12);
-  --blue-dimmer:rgba(23,140,242,0.06);
+  --black:#0a0a0a;--surface:#111111;--surface2:#161616;
+  --border:rgba(255,255,255,0.08);--border2:rgba(255,255,255,0.12);
+  --white:#ffffff;--off-white:#e8e6e1;--muted:#888580;--muted2:#5a5855;
+  --blue:#178CF2;--blue-dim:rgba(23,140,242,0.12);--blue-dimmer:rgba(23,140,242,0.06);
 }
 html{scroll-behavior:smooth;}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--black);
-  color:var(--off-white);
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
-}
+body{font-family:'Inter',sans-serif;background:var(--black);color:var(--off-white);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
-/* ── NAV ── */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 48px;height:64px;
-  background:rgba(10,10,10,0.8);
-  backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--border);
-}
-.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-.nav-logo svg{display:block;}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:64px;background:rgba(10,10,10,0.8);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{display:flex;align-items:center;text-decoration:none;}
 .nav-links{display:flex;align-items:center;gap:32px;}
 .nav-links a{font-size:13px;color:var(--muted);text-decoration:none;letter-spacing:0.01em;transition:color 0.2s;}
 .nav-links a:hover{color:var(--white);}
 .nav-right{display:flex;align-items:center;gap:16px;}
-.nav-demo{
-  font-size:13px;font-weight:500;
-  background:var(--white);color:var(--black);
-  border:none;padding:8px 20px;border-radius:100px;
-  cursor:pointer;font-family:'Inter',sans-serif;
-  transition:opacity 0.2s;letter-spacing:0.01em;
-}
+.nav-demo{font-size:13px;font-weight:500;background:var(--white);color:var(--black);border:none;padding:8px 20px;border-radius:100px;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s;letter-spacing:0.01em;}
 .nav-demo:hover{opacity:0.88;}
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;
-  justify-content:center;align-items:center;
-  text-align:center;
-  padding:120px 48px 80px;
-  position:relative;overflow:hidden;
-}
-.hero-grain{
-  position:absolute;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events:none;opacity:0.4;
-}
-.hero-glow{
-  position:absolute;top:20%;left:50%;transform:translateX(-50%);
-  width:700px;height:400px;
-  background:radial-gradient(ellipse at center, rgba(23,140,242,0.1) 0%, transparent 70%);
-  pointer-events:none;
-}
-.hero-pill{
-  display:inline-flex;align-items:center;gap:8px;
-  border:1px solid var(--border2);
-  border-radius:100px;padding:6px 14px 6px 10px;
-  font-size:12px;color:var(--muted);
-  margin-bottom:36px;
-  animation:fadeUp 0.7s ease both;
-}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 48px 80px;position:relative;overflow:hidden;}
+.hero-grain{position:absolute;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;opacity:0.4;}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse at center,rgba(23,140,242,0.1) 0%,transparent 70%);pointer-events:none;}
+.hero-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border2);border-radius:100px;padding:6px 14px 6px 10px;font-size:12px;color:var(--muted);margin-bottom:36px;animation:fadeUp 0.7s ease both;}
 .hero-pill-dot{width:6px;height:6px;background:var(--blue);border-radius:50%;}
-.hero-headline{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(52px,8vw,104px);
-  font-weight:400;line-height:1.0;
-  letter-spacing:-0.03em;
-  color:var(--white);
-  margin-bottom:28px;
-  max-width:920px;
-  animation:fadeUp 0.8s ease 0.1s both;
-}
+.hero-headline{font-family:'Instrument Serif',serif;font-size:clamp(52px,8vw,104px);font-weight:400;line-height:1.0;letter-spacing:-0.03em;color:var(--white);margin-bottom:28px;max-width:920px;animation:fadeUp 0.8s ease 0.1s both;}
 .hero-headline em{font-style:italic;color:var(--blue);}
-.hero-sub{
-  font-size:clamp(15px,1.5vw,18px);
-  color:var(--muted);line-height:1.75;
-  max-width:540px;font-weight:300;
-  margin-bottom:44px;
-  animation:fadeUp 0.8s ease 0.2s both;
-}
-.hero-actions{
-  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
-  animation:fadeUp 0.8s ease 0.3s both;
-}
-.btn-primary{
-  background:var(--white);color:var(--black);
-  border:none;padding:13px 28px;border-radius:100px;
-  font-size:14px;font-weight:500;cursor:pointer;
-  font-family:'Inter',sans-serif;transition:opacity 0.2s;
-}
+.hero-sub{font-size:clamp(15px,1.5vw,18px);color:var(--muted);line-height:1.75;max-width:540px;font-weight:300;margin-bottom:44px;animation:fadeUp 0.8s ease 0.2s both;}
+.hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.8s ease 0.3s both;}
+.btn-primary{background:var(--white);color:var(--black);border:none;padding:13px 28px;border-radius:100px;font-size:14px;font-weight:500;cursor:pointer;font-family:'Inter',sans-serif;transition:opacity 0.2s;}
 .btn-primary:hover{opacity:0.88;}
-.btn-ghost{
-  background:transparent;color:var(--off-white);
-  border:1px solid var(--border2);padding:13px 28px;border-radius:100px;
-  font-size:14px;font-weight:400;cursor:pointer;
-  font-family:'Inter',sans-serif;transition:all 0.2s;
-}
+.btn-ghost{background:transparent;color:var(--off-white);border:1px solid var(--border2);padding:13px 28px;border-radius:100px;font-size:14px;font-weight:400;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
 .btn-ghost:hover{border-color:rgba(255,255,255,0.3);color:var(--white);}
-
-/* hero scroll indicator */
-.hero-scroll{
-  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:8px;
-  animation:fadeUp 1s ease 0.8s both;
-}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:fadeUp 1s ease 0.8s both;}
 .hero-scroll span{font-size:11px;color:var(--muted2);letter-spacing:0.15em;text-transform:uppercase;}
 .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--muted2),transparent);}
 
-/* ── STATS ── */
-.stats{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-}
-.stat-item{
-  padding:44px 48px;border-right:1px solid var(--border);
-  position:relative;
-}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stat-item{padding:44px 48px;border-right:1px solid var(--border);}
 .stat-item:last-child{border-right:none;}
-.stat-num{
-  font-family:'Instrument Serif',serif;
-  font-size:52px;font-weight:400;color:var(--white);
-  line-height:1;letter-spacing:-0.02em;margin-bottom:8px;
-}
-.stat-num sup{font-size:24px;color:var(--blue);}
+.stat-num{font-family:'Instrument Serif',serif;font-size:52px;font-weight:400;color:var(--white);line-height:1;letter-spacing:-0.02em;margin-bottom:8px;}
 .stat-label{font-size:13px;color:var(--muted);font-weight:300;line-height:1.5;}
 
-/* ── SECTION SHARED ── */
+/* SHARED SECTION */
 .section{padding:120px 48px;}
-.section-eyebrow{
-  font-size:11px;font-weight:500;color:var(--blue);
-  letter-spacing:0.12em;text-transform:uppercase;
-  margin-bottom:20px;
-}
-.section-title{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(36px,4.5vw,60px);
-  font-weight:400;line-height:1.08;letter-spacing:-0.025em;
-  color:var(--white);
-}
+.section-eyebrow{font-size:11px;font-weight:500;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:20px;}
+.section-title{font-family:'Instrument Serif',serif;font-size:clamp(36px,4.5vw,60px);font-weight:400;line-height:1.08;letter-spacing:-0.025em;color:var(--white);}
 .section-title em{font-style:italic;color:var(--blue);}
-.section-body{
-  font-size:16px;color:var(--muted);
-  line-height:1.8;font-weight:300;max-width:500px;
-}
+.section-body{font-size:16px;color:var(--muted);line-height:1.8;font-weight:300;max-width:500px;}
 
-/* ── ABOUT / SPLIT ── */
-.split{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:80px;align-items:center;
-  border-top:1px solid var(--border);
-}
-.split-visual{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:40px;min-height:360px;
-  position:relative;overflow:hidden;
-  display:flex;flex-direction:column;gap:16px;
-}
-.chat-bubble{
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:12px;padding:14px 18px;
-  font-size:13px;color:var(--off-white);
-  line-height:1.6;max-width:85%;
-  opacity:0;transform:translateY(12px);
-  transition:opacity 0.5s ease, transform 0.5s ease;
-}
-.chat-bubble.visible{opacity:1;transform:translateY(0);}
-.chat-bubble.right{align-self:flex-end;background:var(--blue-dim);border-color:rgba(23,140,242,0.2);}
-.chat-bubble .label{font-size:10px;color:var(--muted2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
-.typing{display:flex;gap:4px;padding:6px 0;}
-.typing span{width:5px;height:5px;background:var(--muted);border-radius:50%;animation:bounce 1.2s ease infinite;}
-.typing span:nth-child(2){animation-delay:0.15s;}
-.typing span:nth-child(3){animation-delay:0.3s;}
-@keyframes bounce{0%,80%,100%{transform:translateY(0);}40%{transform:translateY(-6px);}}
+/* SPLIT */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;border-top:1px solid var(--border);}
+.split > *{padding-top:40px;}
+.demo-wrap{padding-top:0;}
 
-/* ── SERVICES ── */
-.services-grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);border-radius:16px;overflow:hidden;
-  margin-top:60px;
-}
-.service-card{
-  background:var(--black);padding:44px 40px;
-  position:relative;overflow:hidden;
-  transition:background 0.3s;
-}
+/* EMBEDDED CHATBOT DEMO */
+.demo-wrap{display:flex;flex-direction:column;align-items:center;gap:14px;}
+.chat-wrap-demo{width:100%;max-width:380px;background:#1A1A1A;border:0.5px solid rgba(255,255,255,0.1);border-radius:18px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.6);display:flex;flex-direction:column;}
+.chat-header-demo{background:#178CF2;padding:16px 18px;display:flex;align-items:center;gap:12px;}
+.chat-avatar-demo{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.chat-header-name-demo{font-size:15px;font-weight:600;color:#fff;}
+.chat-header-status-demo{font-size:12px;color:rgba(255,255,255,0.8);display:flex;align-items:center;gap:5px;margin-top:2px;}
+.status-dot-demo{width:7px;height:7px;border-radius:50%;background:#4ade80;}
+.chat-messages-demo{padding:16px;display:flex;flex-direction:column;gap:10px;height:340px;overflow-y:auto;}
+.dmsg{max-width:88%;padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.55;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s;}
+.dmsg.show{opacity:1;transform:translateY(0);}
+.dmsg-bot{background:#252525;color:#E8E4DC;align-self:flex-start;border-bottom-left-radius:3px;}
+.dmsg-user{background:#178CF2;color:#fff;align-self:flex-end;border-bottom-right-radius:3px;}
+.dtyping{background:#252525;align-self:flex-start;border-bottom-left-radius:3px;border-radius:16px;padding:12px 16px;display:flex;gap:5px;align-items:center;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s;}
+.dtyping.show{opacity:1;transform:translateY(0);}
+.tdot{width:7px;height:7px;border-radius:50%;background:#6A6860;animation:td 1.2s infinite;}
+.tdot:nth-child(2){animation-delay:0.2s;}
+.tdot:nth-child(3){animation-delay:0.4s;}
+@keyframes td{0%,60%,100%{opacity:0.3}30%{opacity:1}}
+.dlead-card{background:rgba(23,140,242,0.12);border:0.5px solid rgba(23,140,242,0.35);border-radius:12px;padding:12px 14px;font-size:13px;align-self:flex-start;max-width:92%;opacity:0;transform:translateY(8px);transition:opacity 0.35s,transform 0.35s;}
+.dlead-card.show{opacity:1;transform:translateY(0);}
+.dlead-title{color:#178CF2;font-weight:600;margin-bottom:6px;font-size:13px;}
+.dlead-detail{color:#E8E4DC;line-height:1.7;font-size:12px;}
+.chat-input-row-demo{padding:12px 14px;border-top:0.5px solid rgba(255,255,255,0.07);display:flex;gap:8px;align-items:center;}
+.chat-input-preview-demo{flex:1;background:#252525;border:0.5px solid rgba(255,255,255,0.08);border-radius:22px;padding:9px 16px;font-size:13px;color:#6A6860;font-family:inherit;}
+.send-btn-demo{width:36px;height:36px;border-radius:50%;background:#178CF2;border:none;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.send-btn-demo svg{width:15px;height:15px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;}
+.demo-controls{display:flex;align-items:center;gap:12px;width:100%;max-width:380px;}
+.dctrl-btn{background:#178CF2;color:#fff;border:none;padding:9px 22px;border-radius:22px;font-size:13px;font-weight:500;cursor:pointer;font-family:inherit;transition:background 0.2s;}
+.dctrl-btn:hover{background:#3FA3FF;}
+.dctrl-btn.ghost{background:#1E1E1E;border:0.5px solid rgba(255,255,255,0.1);color:#E8E4DC;}
+.dctrl-btn.ghost:hover{background:#252525;}
+.dprog-track{flex:1;height:3px;background:rgba(255,255,255,0.07);border-radius:2px;overflow:hidden;}
+.dprog-fill{height:100%;background:#178CF2;border-radius:2px;width:0%;transition:width 0.3s linear;}
+.demo-powered{font-size:11px;color:#6A6860;display:flex;align-items:center;gap:5px;}
+.demo-powered span{color:#178CF2;font-weight:600;letter-spacing:1px;}
+
+/* SERVICES */
+.services-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:60px;}
+.service-card{background:var(--black);padding:44px 40px;position:relative;overflow:hidden;transition:background 0.3s;}
 .service-card:hover{background:var(--surface);}
-.service-num{
-  font-size:11px;color:var(--muted2);letter-spacing:0.1em;
-  margin-bottom:24px;font-weight:500;
-}
-.service-icon{
-  width:44px;height:44px;
-  border:1px solid var(--border2);border-radius:10px;
-  display:flex;align-items:center;justify-content:center;
-  margin-bottom:20px;
-  background:var(--surface2);
-}
+.service-num{font-size:11px;color:var(--muted2);letter-spacing:0.1em;margin-bottom:24px;font-weight:500;}
+.service-icon{width:44px;height:44px;border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;background:var(--surface2);}
 .service-icon svg{width:20px;height:20px;stroke:var(--blue);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
-.service-name{
-  font-family:'Instrument Serif',serif;
-  font-size:26px;font-weight:400;color:var(--white);
-  letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;
-}
+.service-name{font-family:'Instrument Serif',serif;font-size:26px;font-weight:400;color:var(--white);letter-spacing:-0.02em;line-height:1.2;margin-bottom:14px;}
 .service-desc{font-size:14px;color:var(--muted);line-height:1.75;font-weight:300;}
 .service-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-.service-tag{
-  font-size:11px;color:var(--muted);
-  border:1px solid var(--border);border-radius:100px;
-  padding:4px 12px;
-}
-.service-arrow{
-  position:absolute;top:40px;right:40px;
-  font-size:18px;color:var(--muted2);
-  transition:all 0.3s;
-}
+.service-tag{font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:100px;padding:4px 12px;}
+.service-arrow{position:absolute;top:40px;right:40px;font-size:18px;color:var(--muted2);transition:all 0.3s;}
 .service-card:hover .service-arrow{color:var(--blue);transform:translate(3px,-3px);}
 
-/* ── WHO WE HELP ── */
-.clients-section{
-  border-top:1px solid var(--border);
-  padding:120px 48px;
-}
+/* WHO WE HELP */
+.clients-section{border-top:1px solid var(--border);padding:120px 48px;}
 .clients-list{margin-top:60px;border-top:1px solid var(--border);}
-.client-row{
-  display:grid;grid-template-columns:60px 1fr 200px 32px;
-  gap:40px;align-items:center;
-  padding:28px 0;border-bottom:1px solid var(--border);
-  cursor:default;transition:all 0.25s;
-}
+.client-row{display:grid;grid-template-columns:60px 1fr 200px 32px;gap:40px;align-items:center;padding:28px 0;border-bottom:1px solid var(--border);cursor:default;transition:all 0.25s;}
 .client-row:hover .client-name{color:var(--white);}
 .client-row:hover .client-arrow{color:var(--blue);transform:translate(3px,-3px);}
 .client-idx{font-size:12px;color:var(--muted2);}
-.client-name{
-  font-family:'Instrument Serif',serif;
-  font-size:28px;font-weight:400;color:var(--muted);
-  letter-spacing:-0.02em;transition:color 0.25s;
-}
+.client-name{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;color:var(--muted);letter-spacing:-0.02em;transition:color 0.25s;}
 .client-tag{font-size:12px;color:var(--muted2);letter-spacing:0.06em;text-align:right;}
 .client-arrow{font-size:18px;color:var(--muted2);transition:all 0.25s;}
 
-/* ── MARQUEE ── */
-.marquee-section{
-  border-top:1px solid var(--border);
-  border-bottom:1px solid var(--border);
-  padding:28px 0;overflow:hidden;
-}
-.marquee-track{
-  display:flex;gap:0;
-  animation:marquee 28s linear infinite;
-  white-space:nowrap;
-}
+/* MARQUEE */
+.marquee-section{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px 0;overflow:hidden;}
+.marquee-track{display:flex;animation:marquee 28s linear infinite;white-space:nowrap;}
 .marquee-track:hover{animation-play-state:paused;}
-.marquee-item{
-  display:inline-flex;align-items:center;gap:20px;
-  padding:0 28px;
-  font-family:'Instrument Serif',serif;
-  font-size:18px;font-weight:400;color:var(--muted2);
-  flex-shrink:0;
-}
+.marquee-item{display:inline-flex;align-items:center;gap:20px;padding:0 28px;font-family:'Instrument Serif',serif;font-size:18px;font-weight:400;color:var(--muted2);flex-shrink:0;}
 .marquee-item::after{content:'·';color:var(--blue);font-size:22px;}
 @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
 
-/* ── WHY ── */
-.why-section{
-  border-top:1px solid var(--border);
-  padding:120px 48px;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:100px;align-items:start;
-}
-.why-left{}
-.why-right{}
-.why-point{
-  display:flex;gap:20px;padding:28px 0;
-  border-bottom:1px solid var(--border);
-}
+/* WHY */
+.why-section{border-top:1px solid var(--border);padding:120px 48px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;}
+.why-point{display:flex;gap:20px;padding:28px 0;border-bottom:1px solid var(--border);}
 .why-point:last-child{border-bottom:none;}
-.why-point-num{
-  font-size:11px;color:var(--blue);
-  font-weight:500;padding-top:3px;flex-shrink:0;
-  width:24px;
-}
-.why-point-title{
-  font-family:'Instrument Serif',serif;
-  font-size:20px;font-weight:400;color:var(--white);
-  margin-bottom:8px;letter-spacing:-0.02em;
-}
+.why-point-num{font-size:11px;color:var(--blue);font-weight:500;padding-top:3px;flex-shrink:0;width:24px;}
+.why-point-title{font-family:'Instrument Serif',serif;font-size:20px;font-weight:400;color:var(--white);margin-bottom:8px;letter-spacing:-0.02em;}
 .why-point-desc{font-size:14px;color:var(--muted);line-height:1.75;font-weight:300;}
 
-/* ── TESTIMONIALS ── */
-.testimonials-section{
-  border-top:1px solid var(--border);
-  padding:120px 48px;
-}
-.testimonials-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:16px;margin-top:60px;
-}
-.testimonial-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:32px;
-  display:flex;flex-direction:column;gap:24px;
-  transition:border-color 0.25s;
-}
-.testimonial-card:hover{border-color:var(--border2);}
-.t-quote{
-  font-family:'Instrument Serif',serif;
-  font-size:17px;font-weight:400;color:var(--off-white);
-  line-height:1.65;letter-spacing:-0.01em;flex:1;
-  font-style:italic;
-}
-.t-author{display:flex;align-items:center;gap:12px;}
-.t-avatar{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--blue-dim);
-  border:1px solid rgba(23,140,242,0.2);
-  display:flex;align-items:center;justify-content:center;
-  font-size:13px;font-weight:500;color:var(--blue);flex-shrink:0;
-}
-.t-name{font-size:13px;color:var(--white);font-weight:500;margin-bottom:2px;}
-.t-role{font-size:12px;color:var(--muted);}
-.t-biz{
-  font-size:11px;color:var(--blue);letter-spacing:0.08em;
-  text-transform:uppercase;font-weight:500;margin-bottom:12px;
-}
+/* PRICING */
+.pricing-section{border-top:1px solid var(--border);padding:120px 48px;}
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:60px;}
+.pricing-card{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:44px 40px;position:relative;display:flex;flex-direction:column;transition:border-color 0.3s;}
+.pricing-card:hover{border-color:var(--border2);}
+.pricing-card.featured{border-color:rgba(23,140,242,0.4);background:linear-gradient(135deg,var(--surface) 0%,rgba(23,140,242,0.06) 100%);}
+.pricing-card.featured:hover{border-color:rgba(23,140,242,0.7);}
+.pricing-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(23,140,242,0.15);border:1px solid rgba(23,140,242,0.3);border-radius:100px;padding:4px 12px;font-size:11px;color:var(--blue);font-weight:500;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:24px;width:fit-content;}
+.pricing-name{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;color:var(--white);letter-spacing:-0.02em;margin-bottom:8px;}
+.pricing-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;margin-bottom:28px;}
+.pricing-price{display:flex;align-items:baseline;gap:4px;margin-bottom:4px;}
+.pricing-currency{font-size:20px;color:var(--muted);font-weight:400;margin-top:6px;}
+.pricing-amount{font-family:'Instrument Serif',serif;font-size:64px;font-weight:400;color:var(--white);line-height:1;letter-spacing:-0.03em;}
+.pricing-period{font-size:13px;color:var(--muted);font-weight:300;margin-bottom:28px;}
+.pricing-divider{height:1px;background:var(--border);margin:24px 0;}
+.pricing-features{display:flex;flex-direction:column;gap:13px;margin-bottom:32px;flex:1;}
+.pricing-feature{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--off-white);font-weight:300;line-height:1.5;}
+.feature-check{width:18px;height:18px;border-radius:50%;background:rgba(23,140,242,0.15);border:1px solid rgba(23,140,242,0.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-size:10px;color:var(--blue);}
+.pricing-cta{width:100%;background:var(--white);color:var(--black);border:none;padding:13px;border-radius:100px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:opacity 0.2s;}
+.pricing-cta:hover{opacity:0.88;}
+.pricing-cta.outline{background:transparent;color:var(--off-white);border:1px solid var(--border2);}
+.pricing-cta.outline:hover{border-color:rgba(255,255,255,0.3);color:var(--white);}
+.coming-soon-tag{position:absolute;top:28px;right:28px;font-size:10px;color:var(--muted2);border:1px solid var(--border);border-radius:100px;padding:3px 10px;letter-spacing:0.1em;text-transform:uppercase;}
+.pricing-coming-features{display:flex;flex-direction:column;gap:13px;margin-bottom:32px;flex:1;}
+.pricing-coming-feature{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--muted2);font-weight:300;line-height:1.5;}
+.feature-dot{width:18px;height:18px;border-radius:50%;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.feature-dot::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--muted2);}
 
-/* ── CTA ── */
-.cta-section{
-  border-top:1px solid var(--border);
-  padding:140px 48px;
-  text-align:center;
-  position:relative;overflow:hidden;
-}
-.cta-glow{
-  position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);
-  width:800px;height:400px;
-  background:radial-gradient(ellipse at center, rgba(23,140,242,0.09) 0%, transparent 70%);
-  pointer-events:none;
-}
-.cta-eyebrow{
-  font-size:11px;color:var(--blue);letter-spacing:0.15em;text-transform:uppercase;
-  font-weight:500;margin-bottom:24px;
-  display:flex;align-items:center;justify-content:center;gap:12px;
-}
+/* CTA */
+.cta-section{border-top:1px solid var(--border);padding:140px 48px;text-align:center;position:relative;overflow:hidden;}
+.cta-glow{position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:800px;height:400px;background:radial-gradient(ellipse at center,rgba(23,140,242,0.09) 0%,transparent 70%);pointer-events:none;}
+.cta-eyebrow{font-size:11px;color:var(--blue);letter-spacing:0.15em;text-transform:uppercase;font-weight:500;margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px;}
 .cta-eyebrow::before,.cta-eyebrow::after{content:'';width:32px;height:1px;background:rgba(23,140,242,0.4);}
-.cta-headline{
-  font-family:'Instrument Serif',serif;
-  font-size:clamp(48px,7vw,96px);
-  font-weight:400;line-height:0.98;letter-spacing:-0.03em;
-  color:var(--white);margin-bottom:24px;
-}
+.cta-headline{font-family:'Instrument Serif',serif;font-size:clamp(48px,7vw,96px);font-weight:400;line-height:0.98;letter-spacing:-0.03em;color:var(--white);margin-bottom:24px;}
 .cta-headline em{font-style:italic;color:var(--blue);}
-.cta-sub{
-  font-size:16px;color:var(--muted);margin-bottom:44px;
-  font-weight:300;max-width:400px;margin-left:auto;margin-right:auto;
-  line-height:1.75;
-}
+.cta-sub{font-size:16px;color:var(--muted);margin-bottom:44px;font-weight:300;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.75;}
 .cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid var(--border);
-  padding:64px 48px 40px;
-  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;
-  gap:48px;
-}
-.footer-logo-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:64px 48px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:48px;}
+.footer-logo-wrap{display:flex;align-items:center;margin-bottom:14px;}
 .footer-tagline{font-size:13px;color:var(--muted);line-height:1.7;max-width:220px;font-weight:300;}
 .footer-col-label{font-size:11px;color:var(--muted2);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:18px;font-weight:500;}
 .footer-links{display:flex;flex-direction:column;gap:11px;}
 .footer-links a{font-size:14px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
 .footer-links a:hover{color:var(--white);}
-.footer-bottom{
-  padding:20px 48px;
-  display:flex;align-items:center;justify-content:space-between;
-  border-top:1px solid var(--border);
-  font-size:12px;color:var(--muted2);
-}
+.footer-bottom{padding:20px 48px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border);font-size:12px;color:var(--muted2);}
 .footer-bottom a{color:var(--muted2);text-decoration:none;transition:color 0.2s;}
 .footer-bottom a:hover{color:var(--muted);}
 .footer-bottom-links{display:flex;gap:20px;}
 #nz-clock{font-family:monospace;}
 
-/* ── MODAL ── */
-.modal-backdrop{
-  display:none;position:fixed;inset:0;
-  background:rgba(0,0,0,0.7);z-index:9000;
-  align-items:center;justify-content:center;padding:24px;
-  backdrop-filter:blur(4px);
-}
+/* MODAL */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9000;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(4px);}
 .modal-backdrop.open{display:flex;}
-.modal-box{
-  background:var(--surface);border:1px solid var(--border2);
-  width:100%;max-width:500px;border-radius:20px;
-  padding:48px;position:relative;
-}
-.modal-close{
-  position:absolute;top:20px;right:20px;background:none;border:none;
-  color:var(--muted);font-size:20px;cursor:pointer;
-  width:32px;height:32px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.2s,color 0.2s;
-}
+.modal-box{background:var(--surface);border:1px solid var(--border2);width:100%;max-width:500px;border-radius:20px;padding:48px;position:relative;}
+.modal-close{position:absolute;top:20px;right:20px;background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.2s,color 0.2s;}
 .modal-close:hover{background:var(--surface2);color:var(--white);}
 .modal-eyebrow{font-size:11px;color:var(--blue);letter-spacing:0.12em;text-transform:uppercase;font-weight:500;margin-bottom:16px;}
 .modal-title{font-family:'Instrument Serif',serif;font-size:34px;font-weight:400;color:var(--white);line-height:1.05;letter-spacing:-0.02em;margin-bottom:32px;}
@@ -436,70 +206,46 @@ footer{
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .form-group{margin-bottom:16px;}
 .form-label{display:block;font-size:11px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:8px;font-weight:500;}
-.form-input,.form-textarea{
-  width:100%;background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:10px;color:var(--white);
-  font-family:'Inter',sans-serif;font-size:14px;font-weight:300;
-  padding:11px 14px;outline:none;transition:border-color 0.2s;
-}
+.form-input,.form-textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--white);font-family:'Inter',sans-serif;font-size:14px;font-weight:300;padding:11px 14px;outline:none;transition:border-color 0.2s;}
 .form-input:focus,.form-textarea:focus{border-color:rgba(23,140,242,0.5);}
 .form-input::placeholder,.form-textarea::placeholder{color:var(--muted2);}
 .form-textarea{resize:vertical;min-height:90px;}
 .form-divider{height:1px;background:var(--border);margin:8px 0 18px;}
-.form-submit{
-  width:100%;background:var(--white);color:var(--black);
-  border:none;padding:13px;border-radius:100px;
-  font-family:'Inter',sans-serif;font-size:14px;font-weight:500;
-  cursor:pointer;transition:opacity 0.2s;margin-top:4px;
-}
+.form-submit{width:100%;background:var(--white);color:var(--black);border:none;padding:13px;border-radius:100px;font-family:'Inter',sans-serif;font-size:14px;font-weight:500;cursor:pointer;transition:opacity 0.2s;margin-top:4px;}
 .form-submit:hover{opacity:0.88;}
 .form-note{font-size:12px;color:var(--muted2);text-align:center;margin-top:12px;font-weight:300;}
 .form-success{display:none;text-align:center;padding:20px 0;}
-.success-ring{
-  width:52px;height:52px;border-radius:50%;
-  border:1px solid rgba(23,140,242,0.3);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 20px;color:var(--blue);font-size:22px;
-}
+.success-ring{width:52px;height:52px;border-radius:50%;border:1px solid rgba(23,140,242,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--blue);font-size:22px;}
 .success-title{font-family:'Instrument Serif',serif;font-size:28px;color:var(--white);margin-bottom:10px;letter-spacing:-0.02em;}
 .success-title em{font-style:italic;color:var(--blue);}
 .success-desc{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300;}
 
-/* ── REVEAL ANIMATIONS ── */
+/* REVEAL */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.8s ease,transform 0.8s ease;}
 .reveal.visible{opacity:1;transform:translateY(0);}
 .reveal-left{opacity:0;transform:translateX(-24px);transition:opacity 0.8s ease,transform 0.8s ease;}
 .reveal-left.visible{opacity:1;transform:translateX(0);}
 .reveal-right{opacity:0;transform:translateX(24px);transition:opacity 0.8s ease,transform 0.8s ease;}
 .reveal-right.visible{opacity:1;transform:translateX(0);}
-
-/* ── KEYFRAMES ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
 
-/* ── RESPONSIVE ── */
+/* RESPONSIVE */
 @media(max-width:900px){
-  nav{padding:0 20px;}
-  .nav-links{display:none;}
+  nav{padding:0 20px;}.nav-links{display:none;}
   .hero{padding:110px 20px 70px;}
-  .hero-wm{font-size:90px;}
-  .stats{grid-template-columns:1fr;}
-  .stat-item{padding:32px 20px;border-right:none;border-bottom:1px solid var(--border);}
+  .stats{grid-template-columns:1fr;}.stat-item{padding:32px 20px;border-right:none;border-bottom:1px solid var(--border);}
   .section{padding:72px 20px;}
   .split{grid-template-columns:1fr;gap:40px;}
   .services-grid{grid-template-columns:1fr;}
   .clients-section{padding:72px 20px;}
-  .client-row{grid-template-columns:40px 1fr auto;gap:16px;}
-  .client-tag{display:none;}
+  .client-row{grid-template-columns:40px 1fr auto;gap:16px;}.client-tag{display:none;}
   .why-section{grid-template-columns:1fr;gap:0;padding:72px 20px;}
-  .testimonials-grid{grid-template-columns:1fr;}
+  .pricing-section{padding:72px 20px;}.pricing-grid{grid-template-columns:1fr;}
   .cta-section{padding:80px 20px;}
   footer{grid-template-columns:1fr 1fr;padding:40px 20px 24px;}
   .footer-bottom{flex-direction:column;gap:12px;text-align:center;padding:16px 20px;}
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important;}
-}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
 </style>
 </head>
 <body>
@@ -508,14 +254,14 @@ footer{
 <nav>
   <a href="#" class="nav-logo" style="text-decoration:none;display:inline-block;line-height:1;">
     <svg width="96" height="30" viewBox="0 0 96 30" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-      <text y="24" font-family="'Instrument Serif', Georgia, serif" font-size="26" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
+      <text y="24" font-family="'Instrument Serif',Georgia,serif" font-size="26" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
     </svg>
   </a>
   <div class="nav-links">
     <a href="#about">About</a>
     <a href="#services">Services</a>
     <a href="#clients">Who we help</a>
-    <a href="#why">Why Nexly</a>
+    <a href="#pricing">Pricing</a>
   </div>
   <div class="nav-right">
     <button class="nav-demo" onclick="openModal()">Book a free demo</button>
@@ -526,100 +272,62 @@ footer{
 <div class="hero" id="hero-section">
   <div class="hero-grain"></div>
   <div class="hero-glow"></div>
-
-  <div class="hero-pill">
-    <div class="hero-pill-dot"></div>
-    AI-powered business solutions · New Zealand
-  </div>
-
-  <h1 class="hero-headline">
-    Your business,<br/><em>always on.</em>
-  </h1>
-
-  <p class="hero-sub">
-    Nexly builds intelligent AI chatbots, websites, and digital tools that help New Zealand businesses capture more leads and grow — 24 hours a day, on autopilot.
-  </p>
-
+  <div class="hero-pill"><div class="hero-pill-dot"></div>AI-powered business solutions · New Zealand</div>
+  <h1 class="hero-headline">Your business,<br/><em>always on.</em></h1>
+  <p class="hero-sub">Nexly builds intelligent AI chatbots, websites, and digital tools that help New Zealand businesses capture more leads and grow — 24 hours a day, on autopilot.</p>
   <div class="hero-actions">
     <button class="btn-primary" onclick="openModal()">Book a free demo</button>
     <button class="btn-ghost" onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">See what we build</button>
   </div>
-
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <div class="scroll-line"></div>
-  </div>
+  <div class="hero-scroll"><span>Scroll</span><div class="scroll-line"></div></div>
 </div>
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat-item reveal">
-    <div class="stat-num" data-target="24" data-suffix="/7">0</div>
-    <div class="stat-label">Always-on AI support — your business never sleeps</div>
-  </div>
-  <div class="stat-item reveal">
-    <div class="stat-num" data-target="3" data-prefix="x">0</div>
-    <div class="stat-label">More leads captured after-hours on average</div>
-  </div>
-  <div class="stat-item reveal">
-    <div class="stat-num" data-target="100" data-suffix="%">0</div>
-    <div class="stat-label">New Zealand owned and operated</div>
-  </div>
+  <div class="stat-item reveal"><div class="stat-num" data-target="24" data-suffix="/7">0</div><div class="stat-label">Always-on AI support — your business never sleeps</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-target="3" data-prefix="x">0</div><div class="stat-label">More leads captured after-hours on average</div></div>
+  <div class="stat-item reveal"><div class="stat-num" data-target="100" data-suffix="%">0</div><div class="stat-label">New Zealand owned and operated</div></div>
 </div>
 
 <!-- MARQUEE -->
 <div class="marquee-section">
-  <div class="marquee-track" id="marquee">
-    <div class="marquee-item">AI Chatbots</div>
-    <div class="marquee-item">Lead Capture</div>
-    <div class="marquee-item">Website Design</div>
-    <div class="marquee-item">Booking Automation</div>
-    <div class="marquee-item">WhatsApp Bots</div>
-    <div class="marquee-item">Growth Retainers</div>
-    <div class="marquee-item">SEO Optimised</div>
-    <div class="marquee-item">24/7 Support</div>
-    <div class="marquee-item">We Connect</div>
-    <div class="marquee-item">AI Chatbots</div>
-    <div class="marquee-item">Lead Capture</div>
-    <div class="marquee-item">Website Design</div>
-    <div class="marquee-item">Booking Automation</div>
-    <div class="marquee-item">WhatsApp Bots</div>
-    <div class="marquee-item">Growth Retainers</div>
-    <div class="marquee-item">SEO Optimised</div>
-    <div class="marquee-item">24/7 Support</div>
-    <div class="marquee-item">We Connect</div>
+  <div class="marquee-track">
+    <div class="marquee-item">AI Chatbots</div><div class="marquee-item">Lead Capture</div><div class="marquee-item">Website Design</div><div class="marquee-item">Booking Automation</div><div class="marquee-item">WhatsApp Bots</div><div class="marquee-item">Growth Retainers</div><div class="marquee-item">SEO Optimised</div><div class="marquee-item">24/7 Support</div><div class="marquee-item">We Connect</div>
+    <div class="marquee-item">AI Chatbots</div><div class="marquee-item">Lead Capture</div><div class="marquee-item">Website Design</div><div class="marquee-item">Booking Automation</div><div class="marquee-item">WhatsApp Bots</div><div class="marquee-item">Growth Retainers</div><div class="marquee-item">SEO Optimised</div><div class="marquee-item">24/7 Support</div><div class="marquee-item">We Connect</div>
   </div>
 </div>
 
-<!-- ABOUT / SPLIT -->
+<!-- ABOUT with embedded demo -->
 <div class="section" id="about">
   <div class="split">
     <div class="reveal-left">
       <div class="section-eyebrow">What is Nexly</div>
       <h2 class="section-title" style="margin-bottom:24px;">Built for businesses that can't afford to miss a lead</h2>
-      <p class="section-body" style="margin-bottom:20px;">
-        People don't wait anymore. If your business doesn't respond at 9pm on a Sunday, your competitor's will. Nexly puts an intelligent AI assistant on your business — answering questions, capturing leads, and booking appointments while you sleep.
-      </p>
-      <p class="section-body">
-        Founded in New Zealand, built for New Zealand businesses. No tech knowledge needed on your end.
-      </p>
+      <p class="section-body" style="margin-bottom:20px;">People don't wait anymore. If your business doesn't respond at 9pm on a Sunday, your competitor's will. Nexly puts an intelligent AI assistant on your business — answering questions, capturing leads, and booking appointments while you sleep.</p>
+      <p class="section-body">Founded in New Zealand, built for New Zealand businesses. No tech knowledge needed on your end.</p>
     </div>
-    <div class="split-visual reveal-right" id="chatDemo">
-      <div class="chat-bubble">
-        <div class="label">Customer · 10:47 PM</div>
-        Hey, do you have availability for a cut and colour this Saturday?
-      </div>
-      <div class="chat-bubble right">
-        <div class="label">Nexly AI · instant</div>
-        Hi there! Yes, we have a 10am and 2pm slot this Saturday. Want me to book you in? Just drop your name and I'll confirm it now 😊
-      </div>
-      <div class="chat-bubble">
-        <div class="label">Customer · 10:47 PM</div>
-        Amazing — Jane Smith please, the 10am works!
-      </div>
-      <div class="chat-bubble right">
-        <div class="label">Nexly AI · instant</div>
-        <div>Done! You're booked for Saturday at 10am. You'll get a reminder the day before. See you then, Jane! ✨</div>
+    <div class="reveal-right">
+      <div class="demo-wrap">
+        <div class="chat-wrap-demo">
+          <div class="chat-header-demo">
+            <div class="chat-avatar-demo">🤖</div>
+            <div>
+              <div class="chat-header-name-demo">Bella — AI Assistant</div>
+              <div class="chat-header-status-demo"><span class="status-dot-demo"></span> Online now</div>
+            </div>
+          </div>
+          <div class="chat-messages-demo" id="dmsgs"></div>
+          <div class="chat-input-row-demo">
+            <div class="chat-input-preview-demo" id="dinputPreview">Type a message...</div>
+            <div class="send-btn-demo"><svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+          </div>
+        </div>
+        <div class="demo-controls">
+          <button class="dctrl-btn" id="dstartBtn" onclick="startDemo()">▶ Play demo</button>
+          <button class="dctrl-btn ghost" id="dreplayBtn" onclick="resetDemo()" style="display:none;">↺ Replay</button>
+          <div class="dprog-track"><div class="dprog-fill" id="dprog"></div></div>
+        </div>
+        <div class="demo-powered">Powered by <span>NEXLY</span></div>
       </div>
     </div>
   </div>
@@ -634,62 +342,34 @@ footer{
   <div class="services-grid reveal" style="margin-bottom:0;">
     <div class="service-card">
       <div class="service-num">01</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
       <div class="service-name">AI Chatbots &amp; Lead Capture</div>
       <div class="service-desc">An AI assistant trained on your business — answering questions, capturing leads, and qualifying customers around the clock. No scripts, no wait times.</div>
-      <div class="service-tags">
-        <span class="service-tag">24/7 support</span>
-        <span class="service-tag">Lead capture</span>
-        <span class="service-tag">FAQ automation</span>
-        <span class="service-tag">Multilingual</span>
-      </div>
+      <div class="service-tags"><span class="service-tag">24/7 support</span><span class="service-tag">Lead capture</span><span class="service-tag">FAQ automation</span><span class="service-tag">Multilingual</span></div>
       <div class="service-arrow">↗</div>
     </div>
     <div class="service-card">
       <div class="service-num">02</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
       <div class="service-name">Website Design &amp; Development</div>
       <div class="service-desc">Mobile-first, conversion-focused websites that load fast and look sharp. Built to rank on Google and turn visitors into customers.</div>
-      <div class="service-tags">
-        <span class="service-tag">Mobile-first</span>
-        <span class="service-tag">SEO optimised</span>
-        <span class="service-tag">CMS included</span>
-        <span class="service-tag">Fast delivery</span>
-      </div>
+      <div class="service-tags"><span class="service-tag">Mobile-first</span><span class="service-tag">SEO optimised</span><span class="service-tag">CMS included</span><span class="service-tag">Fast delivery</span></div>
       <div class="service-arrow">↗</div>
     </div>
     <div class="service-card">
       <div class="service-num">03</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="8" cy="15" r="1" fill="#178CF2" stroke="none"/><circle cx="12" cy="15" r="1" fill="#178CF2" stroke="none"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><circle cx="8" cy="15" r="1" fill="#178CF2" stroke="none"/><circle cx="12" cy="15" r="1" fill="#178CF2" stroke="none"/></svg></div>
       <div class="service-name">Booking &amp; Calendar Integration</div>
       <div class="service-desc">Let customers book appointments directly through your AI chatbot or website, with automatic confirmations and reminders. Zero admin.</div>
-      <div class="service-tags">
-        <span class="service-tag">Google Calendar</span>
-        <span class="service-tag">Auto-confirm</span>
-        <span class="service-tag">SMS reminders</span>
-        <span class="service-tag">Zero admin</span>
-      </div>
+      <div class="service-tags"><span class="service-tag">Google Calendar</span><span class="service-tag">Auto-confirm</span><span class="service-tag">SMS reminders</span><span class="service-tag">Zero admin</span></div>
       <div class="service-arrow">↗</div>
     </div>
     <div class="service-card">
       <div class="service-num">04</div>
-      <div class="service-icon">
-        <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-      </div>
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
       <div class="service-name">Growth &amp; Automation Retainers</div>
       <div class="service-desc">Monthly partnerships that keep your business ahead — performance reports, review protection, WhatsApp bots, AI content, and ongoing improvements.</div>
-      <div class="service-tags">
-        <span class="service-tag">Monthly reports</span>
-        <span class="service-tag">Review protection</span>
-        <span class="service-tag">WhatsApp bots</span>
-        <span class="service-tag">AI content</span>
-      </div>
+      <div class="service-tags"><span class="service-tag">Monthly reports</span><span class="service-tag">Review protection</span><span class="service-tag">WhatsApp bots</span><span class="service-tag">AI content</span></div>
       <div class="service-arrow">↗</div>
     </div>
   </div>
@@ -719,34 +399,60 @@ footer{
     <p class="section-body">In a world full of noise, the businesses that respond first win. Nexly closes that gap — permanently.</p>
   </div>
   <div class="reveal-right">
-    <div class="why-point">
-      <div class="why-point-num">01</div>
-      <div>
-        <div class="why-point-title">You're losing leads after hours</div>
-        <div class="why-point-desc">Most enquiries come outside business hours. Without an AI assistant, those leads go unanswered — and straight to your competitor.</div>
+    <div class="why-point"><div class="why-point-num">01</div><div><div class="why-point-title">You're losing leads after hours</div><div class="why-point-desc">Most enquiries come outside business hours. Without an AI assistant, those leads go unanswered — and straight to your competitor.</div></div></div>
+    <div class="why-point"><div class="why-point-num">02</div><div><div class="why-point-title">Speed is the new competitive advantage</div><div class="why-point-desc">Studies show 78% of customers buy from the business that responds first. Nexly makes you that business, every single time.</div></div></div>
+    <div class="why-point"><div class="why-point-num">03</div><div><div class="why-point-title">No tech knowledge required</div><div class="why-point-desc">We handle everything. You tell us about your business, we build it, we run it. You just watch the leads come in.</div></div></div>
+    <div class="why-point"><div class="why-point-num">04</div><div><div class="why-point-title">NZ$0 upfront to get started</div><div class="why-point-desc">No large upfront costs, no long-term lock-in. Start with a free demo chatbot and see the difference before you commit to anything.</div></div></div>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-section" id="pricing">
+  <div class="reveal">
+    <div class="section-eyebrow">Simple pricing</div>
+    <h2 class="section-title">Transparent, flat-rate<br/><em>pricing.</em></h2>
+  </div>
+  <div class="pricing-grid reveal">
+
+    <div class="pricing-card featured">
+      <div class="pricing-badge">✓ Available now</div>
+      <div class="pricing-name">AI Assistant Plan</div>
+      <div class="pricing-desc">Everything you need to capture leads, answer customers, and grow your business — 24/7, fully managed by us.</div>
+      <div class="pricing-price"><span class="pricing-currency">NZ$</span><span class="pricing-amount">50</span></div>
+      <div class="pricing-period">per month · cancel anytime</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-features">
+        <div class="pricing-feature"><div class="feature-check">✓</div>Custom AI chatbot trained on your business</div>
+        <div class="pricing-feature"><div class="feature-check">✓</div>24/7 lead capture &amp; FAQ automation</div>
+        <div class="pricing-feature"><div class="feature-check">✓</div>Booking &amp; appointment integration</div>
+        <div class="pricing-feature"><div class="feature-check">✓</div>Ongoing updates &amp; maintenance included</div>
+        <div class="pricing-feature"><div class="feature-check">✓</div>Monthly performance check-ins</div>
+        <div class="pricing-feature"><div class="feature-check">✓</div>NZ-based support team</div>
+        <div class="pricing-feature"><div class="feature-check">✓</div>No setup fees · No lock-in contracts</div>
       </div>
+      <button class="pricing-cta" onclick="openModal()">Get started — book a free demo</button>
     </div>
-    <div class="why-point">
-      <div class="why-point-num">02</div>
-      <div>
-        <div class="why-point-title">Speed is the new competitive advantage</div>
-        <div class="why-point-desc">Studies show 78% of customers buy from the business that responds first. Nexly makes you that business, every single time.</div>
+
+    <div class="pricing-card">
+      <div class="coming-soon-tag">Coming soon</div>
+      <div class="pricing-badge" style="background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.1);color:var(--muted2);">More packages</div>
+      <div class="pricing-name" style="color:var(--muted);">Growth &amp; Pro Plans</div>
+      <div class="pricing-desc">We're building out additional packages for businesses that want more — more channels, more automation, more reach.</div>
+      <div class="pricing-price"><span class="pricing-currency" style="color:var(--muted2);">NZ$</span><span class="pricing-amount" style="color:var(--muted);">???</span></div>
+      <div class="pricing-period" style="color:var(--muted2);">pricing to be announced</div>
+      <div class="pricing-divider"></div>
+      <div class="pricing-coming-features">
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>WhatsApp &amp; SMS bot integration</div>
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>Full website design &amp; development</div>
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>AI content creation &amp; SEO</div>
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>Review management &amp; protection</div>
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>Multi-location business support</div>
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>Advanced analytics &amp; reporting</div>
+        <div class="pricing-coming-feature"><div class="feature-dot"></div>Priority support &amp; dedicated account manager</div>
       </div>
+      <button class="pricing-cta outline" onclick="openModal()">Register your interest</button>
     </div>
-    <div class="why-point">
-      <div class="why-point-num">03</div>
-      <div>
-        <div class="why-point-title">No tech knowledge required</div>
-        <div class="why-point-desc">We handle everything. You tell us about your business, we build it, we run it. You just watch the leads come in.</div>
-      </div>
-    </div>
-    <div class="why-point">
-      <div class="why-point-num">04</div>
-      <div>
-        <div class="why-point-title">NZ$0 upfront to get started</div>
-        <div class="why-point-desc">No large upfront costs, no long-term lock-in. Start with a free demo chatbot and see the difference before you commit to anything.</div>
-      </div>
-    </div>
+
   </div>
 </div>
 
@@ -758,7 +464,7 @@ footer{
   <p class="cta-sub reveal">Get a free demo chatbot for your business — no commitment, no tech knowledge needed on your end.</p>
   <div class="cta-actions reveal">
     <button class="btn-primary" style="font-size:15px;padding:14px 32px;" onclick="openModal()">Book a free demo</button>
-    <button class="btn-ghost" style="font-size:15px;padding:14px 32px;" onclick="alert('N/A')">Call us</button>
+    <button class="btn-ghost" style="font-size:15px;padding:14px 32px;" onclick="alert('Call us: 0800 NEXLY')">Call us</button>
   </div>
 </div>
 
@@ -767,7 +473,7 @@ footer{
   <div>
     <div class="footer-logo-wrap">
       <svg width="86" height="28" viewBox="0 0 86 28" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-        <text y="22" font-family="'Instrument Serif', Georgia, serif" font-size="24" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
+        <text y="22" font-family="'Instrument Serif',Georgia,serif" font-size="24" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
       </svg>
     </div>
     <div class="footer-tagline">AI-powered digital solutions for New Zealand businesses. We Connect.</div>
@@ -775,47 +481,34 @@ footer{
   <div>
     <div class="footer-col-label">Navigate</div>
     <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#clients">Who we help</a>
-      <a href="#contact">Contact</a>
+      <a href="#about">About</a><a href="#services">Services</a><a href="#clients">Who we help</a><a href="#pricing">Pricing</a>
     </div>
   </div>
   <div>
     <div class="footer-col-label">Services</div>
     <div class="footer-links">
-      <a href="#services">AI Chatbots</a>
-      <a href="#services">Website Design</a>
-      <a href="#services">Booking Integration</a>
-      <a href="#services">Growth Retainers</a>
+      <a href="#services">AI Chatbots</a><a href="#services">Website Design</a><a href="#services">Booking Integration</a><a href="#services">Growth Retainers</a>
     </div>
   </div>
   <div>
     <div class="footer-col-label">Connect</div>
     <div class="footer-links">
-      <a href="#">Instagram</a>
-      <a href="#">LinkedIn</a>
-      <a href="#">Facebook</a>
-      <a href="mailto:jordan.nexly@gmail.com">jordan.nexly@gmail.com</a>
+      <a href="#">Instagram</a><a href="#">LinkedIn</a><a href="#">Facebook</a><a href="mailto:jordan.nexly@gmail.com">jordan.nexly@gmail.com</a>
     </div>
   </div>
 </footer>
 <div class="footer-bottom">
   <div style="display:flex;align-items:center;gap:8px;">
     <svg width="72" height="22" viewBox="0 0 72 22" xmlns="http://www.w3.org/2000/svg" style="display:block;overflow:visible;">
-      <text y="18" font-family="'Instrument Serif', Georgia, serif" font-size="20" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
+      <text y="18" font-family="'Instrument Serif',Georgia,serif" font-size="20" font-weight="400"><tspan font-style="normal" fill="#ffffff">NEX</tspan><tspan font-style="italic" fill="#178CF2">LY</tspan></text>
     </svg>
     <span style="font-size:12px;color:#5a5855;">© 2026 · We Connect</span>
   </div>
   <div id="nz-clock"></div>
-  <div class="footer-bottom-links">
-    <a href="#">Privacy</a>
-    <a href="#">Terms</a>
-    <a href="#">Cookies</a>
-  </div>
+  <div class="footer-bottom-links"><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Cookies</a></div>
 </div>
 
-<!-- DEMO MODAL -->
+<!-- MODAL -->
 <div class="modal-backdrop" id="demoModal" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -823,19 +516,10 @@ footer{
       <div class="modal-eyebrow">Free demo · no commitment</div>
       <div class="modal-title">Let's get your<br/>business <em>growing.</em></div>
       <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Full name</label>
-          <input id="f-name" class="form-input" type="text" placeholder="Jane Smith">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Phone</label>
-          <input id="f-phone" class="form-input" type="tel" placeholder="+64 21 000 000">
-        </div>
+        <div class="form-group"><label class="form-label">Full name</label><input id="f-name" class="form-input" type="text" placeholder="Jane Smith"></div>
+        <div class="form-group"><label class="form-label">Phone</label><input id="f-phone" class="form-input" type="tel" placeholder="+64 21 000 000"></div>
       </div>
-      <div class="form-group">
-        <label class="form-label">Email address</label>
-        <input id="f-email" class="form-input" type="email" placeholder="jane@yourbusiness.co.nz">
-      </div>
+      <div class="form-group"><label class="form-label">Email address</label><input id="f-email" class="form-input" type="email" placeholder="jane@yourbusiness.co.nz"></div>
       <div class="form-divider"></div>
       <div class="form-group">
         <label class="form-label">Notes <span style="color:var(--muted2);text-transform:none;letter-spacing:0;">— optional</span></label>
@@ -853,58 +537,92 @@ footer{
 </div>
 
 <script>
-/* ── COUNTER ANIMATION ── */
+/* CHATBOT DEMO */
+const STEPS=[
+  {type:'bot',text:'Hi there! 👋 Welcome to Bella\'s Hair Studio. How can I help you today?',delay:600,typing:0},
+  {type:'user',text:'Hi! What are your prices for a balayage?',delay:1800,typing:900},
+  {type:'bot',text:'Great choice! Balayage starts from NZ$180 for short hair, NZ$220 for medium, and NZ$260+ for long. All include a toner and blow-dry. 🎨',delay:2400,typing:1300},
+  {type:'user',text:'Do you use Olaplex?',delay:1800,typing:700},
+  {type:'bot',text:'Yes! Olaplex is available as an add-on for NZ$30. It protects your hair during colour — we\'d recommend it for a balayage. 💪',delay:2000,typing:1000},
+  {type:'user',text:'Can I get a quote for medium length hair?',delay:2000,typing:900},
+  {type:'bot',text:'For medium length: Balayage NZ$220 + Olaplex NZ$30 = NZ$250 total. Includes toner and blow-dry. Would you like to book, or shall someone call you first?',delay:2400,typing:1300},
+  {type:'user',text:'Could someone call me back please?',delay:2000,typing:900},
+  {type:'bot',text:'Of course! Can I grab your name?',delay:1400,typing:700},
+  {type:'user',text:'Sarah Thompson',delay:1600,typing:700},
+  {type:'bot',text:'Thanks Sarah! Best number to reach you on?',delay:1400,typing:700},
+  {type:'user',text:'021 456 7890',delay:1600,typing:700},
+  {type:'bot',text:'Perfect! I\'ve passed your details to the team. Someone from Bella\'s will call you within a few hours. Talk soon! 😊',delay:2200,typing:1200},
+  {type:'lead',delay:800},
+];
+let dRunning=false,dIdx=0,dStartT=0,dRaf=null;
+const DTOTAL=STEPS.reduce((a,s)=>a+(s.typing||0)+s.delay,0);
+
+function startDemo(){
+  if(dRunning)return;
+  document.getElementById('dstartBtn').style.display='none';
+  document.getElementById('dreplayBtn').style.display='none';
+  dRunning=true;dIdx=0;dStartT=performance.now();
+  dTick();dProgLoop();
+}
+function dProgLoop(){
+  if(!dRunning)return;
+  const p=Math.min(100,((performance.now()-dStartT)/DTOTAL)*100);
+  document.getElementById('dprog').style.width=p+'%';
+  if(p<100)dRaf=requestAnimationFrame(dProgLoop);
+}
+function dTick(){
+  if(dIdx>=STEPS.length){dRunning=false;document.getElementById('dprog').style.width='100%';document.getElementById('dreplayBtn').style.display='inline-flex';return;}
+  const s=STEPS[dIdx++];
+  if(s.type==='user'&&s.typing){
+    const inp=document.getElementById('dinputPreview');let i=0;inp.textContent='';
+    const iv=setInterval(()=>{
+      if(i<s.text.length){inp.textContent+=s.text[i++];}
+      else{clearInterval(iv);setTimeout(()=>{dAddMsg('user',s.text);inp.textContent='Type a message...';setTimeout(dTick,s.delay);},200);}
+    },s.typing/Math.max(1,s.text.length));
+  } else if(s.type==='bot'&&s.typing){
+    const t=dAddTyping();setTimeout(()=>{t.remove();dAddMsg('bot',s.text);setTimeout(dTick,s.delay);},s.typing);
+  } else if(s.type==='lead'){
+    setTimeout(()=>{dAddLead();setTimeout(dTick,s.delay);},400);
+  } else {setTimeout(dTick,s.delay);}
+}
+function dAddMsg(type,text){const el=document.createElement('div');el.className='dmsg dmsg-'+type;el.textContent=text;dAppend(el);return el;}
+function dAddTyping(){const el=document.createElement('div');el.className='dtyping';el.innerHTML='<div class="tdot"></div><div class="tdot"></div><div class="tdot"></div>';dAppend(el);return el;}
+function dAddLead(){const el=document.createElement('div');el.className='dlead-card';el.innerHTML='<div class="dlead-title">✓ Lead captured — Nexly</div><div class="dlead-detail">Name: Sarah Thompson<br/>Phone: 021 456 7890<br/>Interest: Balayage NZ$250<br/>Status: Callback requested</div>';dAppend(el);}
+function dAppend(el){const m=document.getElementById('dmsgs');m.appendChild(el);requestAnimationFrame(()=>el.classList.add('show'));m.scrollTop=m.scrollHeight;}
+function resetDemo(){
+  dRunning=false;cancelAnimationFrame(dRaf);
+  document.getElementById('dmsgs').innerHTML='';
+  document.getElementById('dreplayBtn').style.display='none';
+  document.getElementById('dstartBtn').style.display='inline-flex';
+  document.getElementById('dprog').style.width='0%';
+  document.getElementById('dinputPreview').textContent='Type a message...';
+  dIdx=0;
+}
+
+/* COUNTER */
 function animateCounter(el){
-  const target=parseInt(el.dataset.target);
-  const suffix=el.dataset.suffix||'';
-  const prefix=el.dataset.prefix||'';
-  const dur=1600;const start=performance.now();
-  function step(now){
-    const p=Math.min((now-start)/dur,1);
-    const ease=1-Math.pow(1-p,3);
-    el.textContent=prefix+Math.round(ease*target)+suffix;
-    if(p<1)requestAnimationFrame(step);
-  }
+  const target=parseInt(el.dataset.target),suffix=el.dataset.suffix||'',prefix=el.dataset.prefix||'';
+  const dur=1600,start=performance.now();
+  function step(now){const p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=prefix+Math.round(ease*target)+suffix;if(p<1)requestAnimationFrame(step);}
   requestAnimationFrame(step);
 }
 
-/* ── INTERSECTION OBSERVER ── */
+/* REVEAL OBSERVER */
 const revealObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       e.target.classList.add('visible');
-      if(e.target.classList.contains('stat-item')){
-        const num=e.target.querySelector('.stat-num');
-        if(num&&!num.dataset.animated){num.dataset.animated='1';animateCounter(num);}
-      }
+      if(e.target.classList.contains('stat-item')){const n=e.target.querySelector('.stat-num');if(n&&!n.dataset.animated){n.dataset.animated='1';animateCounter(n);}}
     }
   });
 },{threshold:0.1});
 document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stat-item').forEach(el=>revealObs.observe(el));
 
-/* ── CHAT BUBBLE SEQUENCE ── */
-const chatObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const bubbles=e.target.querySelectorAll('.chat-bubble');
-      bubbles.forEach((b,i)=>setTimeout(()=>b.classList.add('visible'),i*320+200));
-      chatObs.unobserve(e.target);
-    }
-  });
-},{threshold:0.2});
-const chatDemo=document.getElementById('chatDemo');
-if(chatDemo)chatObs.observe(chatDemo);
+/* CLOCK */
+function tickClock(){const el=document.getElementById('nz-clock');if(!el)return;el.textContent='NZ '+new Date().toLocaleTimeString('en-NZ',{timeZone:'Pacific/Auckland',hour:'2-digit',minute:'2-digit',second:'2-digit'})+' NZST';}
+tickClock();setInterval(tickClock,1000);
 
-/* ── CLOCK ── */
-function tick(){
-  const el=document.getElementById('nz-clock');
-  if(!el)return;
-  const t=new Date().toLocaleTimeString('en-NZ',{timeZone:'Pacific/Auckland',hour:'2-digit',minute:'2-digit',second:'2-digit'});
-  el.textContent='NZ '+t+' NZST';
-}
-tick();setInterval(tick,1000);
-
-/* ── MODAL ── */
+/* MODAL */
 function openModal(){document.getElementById('demoModal').classList.add('open');}
 function closeModal(){
   document.getElementById('demoModal').classList.remove('open');
@@ -915,46 +633,16 @@ function closeModal(){
   },300);
 }
 async function submitModal(){
-  const n=document.getElementById('f-name').value.trim();
-  const e=document.getElementById('f-email').value.trim();
-  const p=document.getElementById('f-phone').value.trim();
-  const notes=document.getElementById('f-notes').value.trim();
+  const n=document.getElementById('f-name').value.trim(),e=document.getElementById('f-email').value.trim(),p=document.getElementById('f-phone').value.trim(),notes=document.getElementById('f-notes').value.trim();
   if(!n||!e||!p){alert('Please fill in your name, email, and phone number.');return;}
-
-  const btn=document.querySelector('.form-submit');
-  btn.textContent='Sending…';
-  btn.style.opacity='0.6';
-  btn.disabled=true;
-
+  const btn=document.querySelector('.form-submit');btn.textContent='Sending…';btn.style.opacity='0.6';btn.disabled=true;
   try{
-    const res=await fetch('https://formspree.io/f/xrewqzrw',{ 
-      method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify({
-        name:n,
-        email:e,
-        phone:p,
-        notes:notes
-      })
-    });
+    const res=await fetch('https://formspree.io/f/xrewqzrw',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({name:n,email:e,phone:p,notes:notes})});
     const data=await res.json();
-    if(res.ok){
-      document.getElementById('modalForm').style.display='none';
-      document.getElementById('modalSuccess').style.display='block';
-    } else {
-      alert('Something went wrong: '+(data?.errors?.[0]?.message||'Please try again.'));
-      btn.textContent='Book my free demo →';
-      btn.style.opacity='1';
-      btn.disabled=false;
-    }
-  } catch(err){
-    alert('Could not send — please check your connection and try again.');
-    btn.textContent='Book my free demo →';
-    btn.style.opacity='1';
-    btn.disabled=false;
-  }
+    if(res.ok){document.getElementById('modalForm').style.display='none';document.getElementById('modalSuccess').style.display='block';}
+    else{alert('Something went wrong: '+(data?.errors?.[0]?.message||'Please try again.'));btn.textContent='Book my free demo →';btn.style.opacity='1';btn.disabled=false;}
+  }catch(err){alert('Could not send — please check your connection and try again.');btn.textContent='Book my free demo →';btn.style.opacity='1';btn.disabled=false;}
 }
-
 </script>
 </body>
 </html>
